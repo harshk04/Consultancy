@@ -63,7 +63,7 @@ export function Header() {
                 "text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue",
                 item.current
                   ? "text-brand-gold underline decoration-brand-gold/70 underline-offset-8"
-                  : "text-brand-gold/85 hover:text-white",
+                  : "text-brand-gold/85 hover:text-brand-gold",
               )}
             >
               {item.label}
@@ -74,7 +74,7 @@ export function Header() {
         <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/contact"
-            className="inline-flex h-10 items-center justify-center rounded-full border border-brand-gold/70 bg-brand-blue px-4 text-sm font-semibold text-brand-gold shadow-glow transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue"
+            className="inline-flex h-10 items-center justify-center rounded-full border border-brand-gold bg-brand-gold px-4 text-sm font-semibold text-brand-blue transition hover:shadow-[0_0_18px_rgba(255,255,255,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue"
           >
             Begin a Conversation
           </Link>
@@ -153,7 +153,7 @@ export function Header() {
                   <div className="pt-4">
                     <Link
                       href="/contact"
-                      className="inline-flex h-11 w-full items-center justify-center rounded-full border border-brand-gold/70 bg-brand-blue text-sm font-semibold text-brand-gold shadow-glow transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue"
+                      className="inline-flex h-11 w-full items-center justify-center rounded-full border border-brand-gold bg-brand-gold text-sm font-semibold text-brand-blue transition hover:shadow-[0_0_18px_rgba(255,255,255,0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue"
                       onClick={() => setOpen(false)}
                     >
                       Begin a Conversation

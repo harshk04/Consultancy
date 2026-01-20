@@ -7,8 +7,8 @@
   --foreground: #0b1220;
   --muted: rgba(11, 18, 32, 0.72);
   --border: rgba(200, 162, 74, 0.28);
-  --brand-blue: #1e3a8a;
-  --brand-gold: #c8a24a;
+  --brand-blue: #182063;
+  --brand-gold: #e1ca9f;
 }
 
 @theme inline {

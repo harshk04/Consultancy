@@ -45,7 +45,7 @@ export default function HomePage() {
                   {home.hero.subheading}
                 </p>
 
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div className="flex flex-col gap-3 text-brand-blue/80 sm:flex-row sm:items-center">
                   <BrandButtonLink href={home.hero.primaryCta.href} size="lg">
                     {home.hero.primaryCta.label}
                   </BrandButtonLink>

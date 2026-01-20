@@ -1,13 +1,12 @@
-import type { Config } from "tailwindcss";
-
+/** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{ts,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
         brand: {
-          blue: "#1E3A8A",
-          gold: "#C8A24A",
+          blue: "#182063",
+          gold: "#e1ca9f",
           white: "#FFFFFF",
         },
       },
@@ -37,7 +36,7 @@ export default {
           "0%, 100%": { transform: "translateY(0)", opacity: "0.9" },
           "50%": { transform: "translateY(10px)", opacity: "0.55" },
         },
-        "sweep": {
+        sweep: {
           "0%": { transform: "translateX(-120%)" },
           "100%": { transform: "translateX(120%)" },
         },
@@ -52,5 +51,5 @@ export default {
     },
   },
   plugins: [],
-} satisfies Config;
+};
 
