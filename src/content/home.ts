@@ -38,7 +38,7 @@ export const homeContent = {
     title: "Services",
     body: "We partner with schools and educational institutions to design robust academic systems, cultivate leadership capacity, and support sustainable institutional growth.",
     panelSubtitle: "Services in this category include:",
-    panelCta: { label: "Begin a Conversation", href: "/contact" },
+    panelCta: { label: "Explore all services →", href: "/services" },
     categories: [
       {
         id: "academic-consultancy",
@@ -174,6 +174,5 @@ export const homeContent = {
     title: "Begin a Conversation",
     body: "Begin a purposeful conversation. If you are seeking to strengthen leadership, refine learning systems, or bring clarity to your academic direction, we would be pleased to explore how we can support your journey.",
     primaryCta: { label: "Begin a Purposeful Conversation", href: "/contact" },
-    secondaryCta: { label: "Contact Us", href: "/contact" },
   },
 } as const;

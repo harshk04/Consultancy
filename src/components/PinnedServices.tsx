@@ -21,6 +21,7 @@ export function PinnedServices({
   panelSubtitle,
   panelCta,
   categories,
+  showStepLabel = true,
 }: {
   label: string;
   title: string;
@@ -28,6 +29,7 @@ export function PinnedServices({
   panelSubtitle: string;
   panelCta: { label: string; href: string };
   categories: readonly ServiceCategory[];
+  showStepLabel?: boolean;
 }) {
   const sceneRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
@@ -294,13 +296,12 @@ export function PinnedServices({
                     >
                       <span
                         className={cn(
-                          "grid h-11 w-11 shrink-0 place-items-center rounded-xl border bg-white text-[color:var(--fg)] transition-colors",
-                          isActive
-                            ? "border-[color:var(--border-gold)] bg-[color:color-mix(in_oklab,white_75%,var(--brand-gold)_25%)]"
-                            : "border-[color:var(--border)]",
+                          "grid h-11 w-11 shrink-0 place-items-center rounded-xl border text-white transition-colors",
+                          "bg-[color:var(--brand-blue-1)] [background-image:var(--gradient-blue)]",
+                          isActive ? "border-[color:var(--border-gold)]" : "border-[color:color-mix(in_oklab,var(--brand-blue)_28%,var(--border))]",
                         )}
                       >
-                        <Icon name={c.icon} className={cn(isActive ? "text-[color:var(--brand-blue)]" : "text-[color:var(--fg)]")} />
+                        <Icon name={c.icon} className="text-white" />
                       </span>
                       <div className="min-w-0">
                         <p className={cn("text-base font-semibold leading-snug text-[color:var(--fg)]", isActive && "text-[color:var(--brand-blue)]")}>
@@ -322,7 +323,7 @@ export function PinnedServices({
 
               {desktop ? (
                 <p className="mt-4 text-xs text-[color:var(--muted)]">
-                  Scroll to reveal each category, or click to jump.
+                 
                 </p>
               ) : null}
             </div>
@@ -414,17 +415,19 @@ export function PinnedServices({
                 </div>
 
                 <div className={cn("mt-6 flex items-center gap-6 text-xs text-[color:var(--muted)]", desktop ? "justify-between" : "justify-end")}>
-                  {desktop ? (
+                  {desktop && showStepLabel ? (
                     <span>
                       Step {activeIndex + 1} / {steps}
                     </span>
                   ) : null}
-                  <Link
-                    href="/services"
-                    className="rounded-md font-semibold text-[color:var(--fg)] underline decoration-[color:color-mix(in_oklab,var(--fg)_35%,transparent)] underline-offset-4 hover:decoration-[color:var(--fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
-                  >
-                    Explore all services →
-                  </Link>
+                  {panelCta.href !== "/services" ? (
+                    <Link
+                      href="/services"
+                      className="rounded-md font-semibold text-[color:var(--fg)] underline decoration-[color:color-mix(in_oklab,var(--fg)_35%,transparent)] underline-offset-4 hover:decoration-[color:var(--fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
+                    >
+                      Explore all services →
+                    </Link>
+                  ) : null}
                 </div>
               </div>
             </div>

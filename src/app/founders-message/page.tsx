@@ -46,7 +46,7 @@ export default function FoundersMessagePage() {
                     />
                   </div>
                 </div>
-                <p className="mt-4 text-xs text-[color:var(--muted)]">Portrait</p>
+                <p className="mt-4 text-xs text-[color:var(--muted)]"></p>
               </div>
             </div>
           </Card>

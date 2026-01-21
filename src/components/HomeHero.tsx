@@ -132,13 +132,6 @@ export function HomeHero({ hero }: { hero: HomeHeroContent }) {
               {hero.primaryCta.label}
             </Button>
           </div>
-
-          <div className="hero-enter hero-enter--7 mt-14 flex items-center gap-4 text-sm text-[color:var(--muted)]">
-            <span className="hero-scroll-hint grid h-11 w-11 place-items-center rounded-2xl border border-[color:var(--border)] bg-white/70">
-              <span className="h-6 w-4 rounded-[999px] border border-[color:var(--border)]" aria-hidden="true" />
-            </span>
-            <span>{hero.microHint}</span>
-          </div>
         </div>
 
         <div className="hero-enter hero-enter--5 lg:col-span-5 lg:pt-28">

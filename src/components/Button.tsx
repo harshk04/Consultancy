@@ -7,6 +7,8 @@ const base =
 const variants = {
   primary:
     "border-[color:color-mix(in_oklab,var(--brand-blue)_18%,transparent)] [background-image:var(--gradient-gold)] text-[color:var(--brand-blue)] hover:text-black hover:brightness-95",
+  blueGold:
+    "border-[color:color-mix(in_oklab,var(--brand-gold)_28%,transparent)] bg-[color:var(--brand-blue-1)] [background-image:var(--gradient-blue)] text-[color:var(--brand-gold)] hover:brightness-110",
   outline:
     "border-[color:var(--border)] bg-transparent text-[color:var(--fg)] hover:bg-[color:color-mix(in_oklab,var(--brand-blue)_5%,transparent)]",
   ghost:

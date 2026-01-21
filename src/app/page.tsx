@@ -24,6 +24,7 @@ export default function Home() {
           panelSubtitle={homeContent.services.panelSubtitle}
           panelCta={homeContent.services.panelCta}
           categories={homeContent.services.categories}
+          showStepLabel={false}
         />
       </Section>
 
@@ -112,7 +113,7 @@ export default function Home() {
 
       <Section surface="gold">
         <div className="grid gap-10">
-          <div className="max-w-3xl">
+          <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-display text-4xl leading-[1.05] text-[color:var(--brand-blue)] sm:text-5xl">
               {homeContent.begin.title}
             </h2>
@@ -121,19 +122,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-5">
-            <Link
-              href={homeContent.begin.primaryCta.href}
-              className="inline-flex items-center justify-center rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-blue)_25%,transparent)] bg-white/50 px-7 py-3 text-base font-semibold text-[color:var(--brand-blue)] transition-colors hover:bg-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
-            >
+          <div className="flex flex-wrap items-center justify-center gap-5">
+            <Button variant="blueGold" href={homeContent.begin.primaryCta.href} className="px-7 py-3 text-base">
               {homeContent.begin.primaryCta.label}
-            </Link>
-            <Link
-              href={homeContent.begin.secondaryCta.href}
-              className="rounded-md text-sm font-semibold text-[color:var(--brand-blue)] underline decoration-[color:color-mix(in_oklab,var(--brand-blue)_35%,transparent)] underline-offset-6 transition-colors hover:decoration-[color:var(--brand-blue)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
-            >
-              {homeContent.begin.secondaryCta.label}
-            </Link>
+            </Button>
           </div>
         </div>
       </Section>

@@ -341,7 +341,7 @@ export function ThemeStudio() {
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[color:color-mix(in_oklab,var(--brand-blue)_80%,white)]">
                 Gold gradients for CTA sections should stay subtle and premium.
               </p>
-              <div className="mt-6 inline-flex rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-blue)_25%,transparent)] bg-white/60 px-4 py-2 text-xs font-semibold text-[color:var(--brand-blue)]">
+              <div className="mt-6 inline-flex rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-gold)_28%,transparent)] bg-[color:var(--brand-blue-1)] [background-image:var(--gradient-blue)] px-4 py-2 text-xs font-semibold text-[color:var(--brand-gold)]">
                 Begin a Purposeful Conversation
               </div>
             </div>

@@ -100,14 +100,14 @@ export default function ServicesPage() {
       </Section>
 
       <Section surface="gold">
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-4xl leading-[1.05] text-[color:var(--brand-blue)] sm:text-5xl">
             {servicesContent.cta.title}
           </h2>
           <p className="mt-6 text-base leading-relaxed text-[color:color-mix(in_oklab,var(--brand-blue)_85%,white)] sm:text-lg">
             {servicesContent.cta.body}
           </p>
-          <div className="mt-10">
+          <div className="mt-10 flex justify-center">
             <Button
               variant="outline"
               href={servicesContent.cta.primary.href}

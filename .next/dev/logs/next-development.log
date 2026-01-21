@@ -47,3 +47,12 @@
 [00:40:45.616] Server  WARN    Error: Route "/resources/case-studies/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
 [00:41:52.033] Server  LOG     ✓ Compiled in 129ms
 [00:41:59.002] Server  LOG     ✓ Compiled in 24ms
+[00:49:34.295] Server  LOG     ✓ Compiled in 177ms
+[00:49:52.357] Server  LOG     ✓ Compiled in 41ms
+[00:51:25.903] Server  LOG     ✓ Compiled in 281ms
+[00:53:39.923] Server  LOG     ✓ Compiled in 192ms
+[00:56:47.996] Server  LOG     ✓ Compiled in 39ms
+[00:56:58.916] Server  LOG     ✓ Compiled in 238ms
+[00:57:41.073] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:59:10.378] Server  LOG     ✓ Compiled in 310ms
+[01:00:15.724] Server  LOG     ✓ Compiled in 332ms
