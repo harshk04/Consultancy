@@ -110,6 +110,31 @@ function ToggleField({ label, value, onChange }: { label: string; value: boolean
   );
 }
 
+function TextAreaField({
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  value: string;
+  onChange: (next: string) => void;
+  placeholder?: string;
+}) {
+  return (
+    <label className="grid gap-2">
+      <span className="text-xs font-semibold tracking-[0.16em] text-[color:var(--muted)]">{label}</span>
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        rows={5}
+        className="w-full resize-y rounded-2xl border border-[color:var(--border)] bg-white px-3 py-3 text-sm text-[color:var(--fg)] shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
+      />
+    </label>
+  );
+}
+
 function mergeTheme(base: ThemeConfig, patch: Partial<ThemeConfig>): ThemeConfig {
   return { ...base, ...patch };
 }
@@ -244,6 +269,45 @@ export function ThemeStudio() {
                     Advanced (Hero)
                   </summary>
                   <div className="mt-5 grid gap-6">
+                    <ToggleField
+                      label="Hero typewriter"
+                      value={draftTheme.heroTypewriterEnabled}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroTypewriterEnabled: v }))}
+                    />
+                    <SliderField
+                      label="TYPE SPEED"
+                      value={draftTheme.heroTypewriterTypeSpeedMs}
+                      min={28}
+                      max={120}
+                      step={1}
+                      suffix="ms"
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroTypewriterTypeSpeedMs: clamp(v, 10, 240) }))}
+                    />
+                    <SliderField
+                      label="DELETE SPEED"
+                      value={draftTheme.heroTypewriterDeleteSpeedMs}
+                      min={18}
+                      max={90}
+                      step={1}
+                      suffix="ms"
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroTypewriterDeleteSpeedMs: clamp(v, 10, 240) }))}
+                    />
+                    <SliderField
+                      label="PAUSE"
+                      value={draftTheme.heroTypewriterPauseMs}
+                      min={300}
+                      max={2200}
+                      step={50}
+                      suffix="ms"
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroTypewriterPauseMs: clamp(v, 0, 6000) }))}
+                    />
+                    <TextAreaField
+                      label="TYPEWRITER PHRASES (OPTIONAL OVERRIDE)"
+                      value={draftTheme.heroTypewriterPhrasesOverride}
+                      placeholder={"One phrase per line.\nLeave empty to use /src/content/home.ts."}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroTypewriterPhrasesOverride: v }))}
+                    />
+
                     <SliderField
                       label="HERO BLOB OPACITY"
                       value={draftTheme.heroBlobOpacity}
@@ -251,6 +315,22 @@ export function ThemeStudio() {
                       max={0.22}
                       step={0.01}
                       onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroBlobOpacity: clamp(v, 0, 0.35) }))}
+                    />
+                    <SliderField
+                      label="BLOB COUNT"
+                      value={draftTheme.heroBlobCount}
+                      min={3}
+                      max={5}
+                      step={1}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroBlobCount: clamp(v, 3, 5) as 3 | 4 | 5 }))}
+                    />
+                    <SliderField
+                      label="MOTION STRENGTH"
+                      value={draftTheme.heroMotionStrength}
+                      min={0.6}
+                      max={1.6}
+                      step={0.05}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroMotionStrength: clamp(v, 0.4, 2) }))}
                     />
                     <ColorField
                       label="HERO BLOB BLUE"
@@ -266,6 +346,19 @@ export function ThemeStudio() {
                       label="Hero noise overlay"
                       value={draftTheme.heroNoiseEnabled}
                       onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroNoiseEnabled: v }))}
+                    />
+                    <ToggleField
+                      label="Speckled particles"
+                      value={draftTheme.heroSpecksEnabled}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroSpecksEnabled: v }))}
+                    />
+                    <SliderField
+                      label="SPECKS OPACITY"
+                      value={draftTheme.heroSpecksOpacity}
+                      min={0}
+                      max={0.14}
+                      step={0.01}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroSpecksOpacity: clamp(v, 0, 0.25) }))}
                     />
                     <SliderField
                       label="HERO VIGNETTE"

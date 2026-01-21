@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Accordion } from "@/components/Accordion";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -16,7 +15,7 @@ export default function Home() {
 
       <Marquee items={homeContent.marquee.items} />
 
-      <Section reveal={false}>
+      <Section id="home-services" reveal={false}>
         <PinnedServices
           label={homeContent.services.label}
           title={homeContent.services.title}
@@ -28,18 +27,17 @@ export default function Home() {
         />
       </Section>
 
-      <Section surface="muted">
+      <Section id="home-about" surface="muted">
         <div className="grid items-start gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{homeContent.about.label}</p>
             <h2 className="mt-4 text-4xl leading-[1.05] text-[color:var(--fg)] sm:text-5xl">{homeContent.about.title}</h2>
             <p className="mt-6 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">{homeContent.about.body}</p>
-            <Link
-              href={homeContent.about.link.href}
-              className="mt-10 inline-flex items-center gap-2 rounded-md text-sm font-semibold text-[color:var(--fg)] underline decoration-[color:color-mix(in_oklab,var(--fg)_35%,transparent)] underline-offset-6 transition-colors hover:decoration-[color:var(--fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
-            >
-              {homeContent.about.link.label} <span aria-hidden="true">→</span>
-            </Link>
+            <div className="mt-10">
+              <Button variant="blueGold" href={homeContent.about.link.href} className="px-6 py-3 text-sm">
+                {homeContent.about.link.label} <span aria-hidden="true">→</span>
+              </Button>
+            </div>
           </div>
 
           <div className="lg:col-span-6 lg:pl-10">
@@ -57,7 +55,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section>
+      <Section id="home-approach">
         <div className="grid items-start gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{homeContent.approach.label}</p>
@@ -79,7 +77,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section surface="muted">
+      <Section id="home-resources" surface="muted">
         <div className="grid gap-10">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{homeContent.resources.label}</p>
@@ -94,14 +92,14 @@ export default function Home() {
           </div>
 
           <div>
-            <Button variant="outline" href={homeContent.resources.cta.href} className="px-7 py-3 text-base">
+            <Button variant="blueGold" href={homeContent.resources.cta.href} className="px-7 py-3 text-base">
               {homeContent.resources.cta.label}
             </Button>
           </div>
         </div>
       </Section>
 
-      <Section>
+      <Section id="home-faqs">
         <div className="grid gap-10">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{homeContent.faqs.label}</p>
@@ -111,7 +109,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section surface="gold">
+      <Section id="home-begin" surface="gold">
         <div className="grid gap-10">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-display text-4xl leading-[1.05] text-[color:var(--brand-blue)] sm:text-5xl">

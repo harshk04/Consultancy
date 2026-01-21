@@ -4,11 +4,19 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
+import { Typewriter } from "@/components/Typewriter";
 import { cn } from "@/lib/cn";
+import { useTheme } from "@/theme/ThemeProvider";
 
 type HomeHeroContent = {
   tag: string;
   heading: string;
+  typewriter?: {
+    enabled: boolean;
+    staticPrefix: string;
+    phrases: readonly string[];
+    ariaLabel: string;
+  };
   body: readonly string[];
   primaryCta: { label: string; href: string };
   trustCard: { title: string; bullets: readonly string[] };
@@ -26,6 +34,7 @@ function isDesktop() {
 }
 
 export function HomeHero({ hero }: { hero: HomeHeroContent }) {
+  const { persistedTheme } = useTheme();
   const sectionRef = useRef<HTMLElement | null>(null);
   const rafRef = useRef<number | null>(null);
   const lastRef = useRef({ x: 0, y: 0 });
@@ -63,6 +72,18 @@ export function HomeHero({ hero }: { hero: HomeHeroContent }) {
     }
   }, [interactive]);
 
+  const typewriter = hero.typewriter;
+  const ariaLabel = typewriter?.ariaLabel ?? hero.heading;
+  const staticPrefix = typewriter?.staticPrefix ?? hero.heading;
+  const contentPhrases = typewriter?.phrases ?? [];
+  const overridePhrases = persistedTheme.heroTypewriterPhrasesOverride
+    .split("\n")
+    .map((p) => p.trim())
+    .filter(Boolean);
+  const phrases = overridePhrases.length ? overridePhrases : contentPhrases;
+
+  const typewriterEnabled = Boolean(typewriter?.enabled) && persistedTheme.heroTypewriterEnabled;
+
   const onMouseMove = (e: React.MouseEvent) => {
     if (!interactive) return;
     const el = sectionRef.current;
@@ -79,10 +100,11 @@ export function HomeHero({ hero }: { hero: HomeHeroContent }) {
     rafRef.current = window.requestAnimationFrame(() => {
       rafRef.current = null;
       const next = lastRef.current;
-      el.style.setProperty("--hero-parallax-x", `${next.x * 6}px`);
-      el.style.setProperty("--hero-parallax-y", `${next.y * 6}px`);
-      el.style.setProperty("--hero-card-parallax-x", `${next.x * 3}px`);
-      el.style.setProperty("--hero-card-parallax-y", `${next.y * 3}px`);
+      const strength = Math.min(1.6, Math.max(0.6, persistedTheme.heroMotionStrength || 1));
+      el.style.setProperty("--hero-parallax-x", `${next.x * 10 * strength}px`);
+      el.style.setProperty("--hero-parallax-y", `${next.y * 10 * strength}px`);
+      el.style.setProperty("--hero-card-parallax-x", `${next.x * 4 * strength}px`);
+      el.style.setProperty("--hero-card-parallax-y", `${next.y * 4 * strength}px`);
     });
   };
 
@@ -105,25 +127,52 @@ export function HomeHero({ hero }: { hero: HomeHeroContent }) {
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
     >
-      <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-10">
+      <div className="hero-live-layers" aria-hidden="true">
+        <div className="hero-gradient-sweep" />
+        <div className="hero-specks" />
+        {Array.from({ length: persistedTheme.heroBlobCount }, (_, idx) => (
+          <div key={idx} className={cn("hero-blob", `hero-blob--${idx + 1}`)} />
+        ))}
+      </div>
+
+      <div className="relative z-10 grid items-start gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-7">
           <span className="hero-enter hero-enter--1 inline-flex items-center rounded-[var(--radius-pill)] border border-[color:var(--border)] bg-[color:color-mix(in_oklab,var(--brand-blue)_3%,white)] px-4 py-2 text-xs font-semibold tracking-[0.14em] text-[color:var(--fg)]">
             {hero.tag}
           </span>
 
           <h1 className="hero-enter hero-enter--2 mt-8 text-5xl leading-[0.98] text-[color:var(--fg)] sm:text-6xl lg:text-7xl">
-            <span className="hero-headline">{hero.heading}</span>
+            <span className="sr-only">{ariaLabel}</span>
+            <span aria-hidden="true" className="block">
+              <span className="hero-headline">{staticPrefix}</span>
+              {typewriter ? (
+                <>
+                  <br />
+                  <span className="hero-typewriter-line">
+                    <Typewriter
+                      enabled={typewriterEnabled}
+                      phrases={phrases}
+                      typeSpeedMs={persistedTheme.heroTypewriterTypeSpeedMs}
+                      deleteSpeedMs={persistedTheme.heroTypewriterDeleteSpeedMs}
+                      pauseMs={persistedTheme.heroTypewriterPauseMs}
+                    />
+                  </span>
+                </>
+              ) : null}
+            </span>
           </h1>
+
+          <div className="hero-enter hero-enter--3 mt-6 h-px w-20 bg-[image:var(--gradient-gold)] hero-accent-rule" aria-hidden="true" />
 
           <div className="mt-7 grid max-w-2xl gap-4 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
             {hero.body.map((p, idx) => (
-              <p key={p} className={cn("hero-enter", idx === 0 ? "hero-enter--3" : idx === 1 ? "hero-enter--4" : "hero-enter--5")}>
+              <p key={p} className={cn("hero-enter", idx === 0 ? "hero-enter--4" : idx === 1 ? "hero-enter--5" : "hero-enter--6")}>
                 {p}
               </p>
             ))}
           </div>
 
-          <div className="hero-enter hero-enter--6 mt-10 flex flex-wrap items-center gap-4">
+          <div className="hero-enter hero-enter--7 mt-10 flex flex-wrap items-center gap-4">
             <Button
               variant="outline"
               href={hero.primaryCta.href}
@@ -136,11 +185,12 @@ export function HomeHero({ hero }: { hero: HomeHeroContent }) {
 
         <div className="hero-enter hero-enter--5 lg:col-span-5 lg:pt-28">
           <div
-            className="transition-transform duration-300 ease-out motion-reduce:transition-none"
+            className="relative transition-transform duration-300 ease-out motion-reduce:transition-none"
             style={{
               transform: "translate3d(var(--hero-card-parallax-x,0px), var(--hero-card-parallax-y,0px), 0)",
             }}
           >
+            <div className="hero-card-glow pointer-events-none absolute -inset-16" aria-hidden="true" />
             <Card className="hero-trust-card relative overflow-hidden">
               <div className="hero-card-ring pointer-events-none absolute -inset-14" aria-hidden="true" />
               <div className="hero-card-glass pointer-events-none absolute inset-0" aria-hidden="true" />

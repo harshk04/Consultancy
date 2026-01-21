@@ -19,6 +19,15 @@ export type ThemeConfig = {
   heroBlobTintGold: string;
   heroNoiseEnabled: boolean;
   heroVignetteStrength: number;
+  heroSpecksEnabled: boolean;
+  heroSpecksOpacity: number;
+  heroBlobCount: 3 | 4 | 5;
+  heroMotionStrength: number;
+  heroTypewriterEnabled: boolean;
+  heroTypewriterTypeSpeedMs: number;
+  heroTypewriterDeleteSpeedMs: number;
+  heroTypewriterPauseMs: number;
+  heroTypewriterPhrasesOverride: string;
 };
 
 export const defaultTheme: ThemeConfig = {
@@ -35,14 +44,25 @@ export const defaultTheme: ThemeConfig = {
   shadow: "0 18px 45px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.05)",
   radiusCard: 28,
   noiseEnabled: true,
-  heroBlobOpacity: 0.12,
+  heroBlobOpacity: 0.16,
   heroBlobTintBlue: "#2f3cbc",
   heroBlobTintGold: "#e1ca9f",
   heroNoiseEnabled: true,
-  heroVignetteStrength: 0.12,
+  heroVignetteStrength: 0.14,
+  heroSpecksEnabled: true,
+  heroSpecksOpacity: 0.1,
+  heroBlobCount: 5,
+  heroMotionStrength: 1,
+  heroTypewriterEnabled: true,
+  heroTypewriterTypeSpeedMs: 58,
+  heroTypewriterDeleteSpeedMs: 34,
+  heroTypewriterPauseMs: 1050,
+  heroTypewriterPhrasesOverride: "",
 };
 
 export function themeToCssVars(theme: ThemeConfig) {
+  const amp = Math.round(theme.heroMotionStrength * 26);
+  const ampSm = Math.round(theme.heroMotionStrength * 16);
   return {
     "--brand-blue-1": theme.brandBlue1,
     "--brand-blue-2": theme.brandBlue2,
@@ -74,6 +94,12 @@ export function themeToCssVars(theme: ThemeConfig) {
     "--hero-blob-tint-gold": theme.heroBlobTintGold,
     "--hero-noise-opacity": theme.heroNoiseEnabled ? "0.055" : "0",
     "--hero-vignette-strength": `${theme.heroVignetteStrength}`,
+    "--hero-specks-opacity": theme.heroSpecksEnabled ? `${theme.heroSpecksOpacity}` : "0",
+    "--hero-motion-strength": `${theme.heroMotionStrength}`,
+    "--hero-motion-amp": `${amp}px`,
+    "--hero-motion-amp-neg": `${-amp}px`,
+    "--hero-motion-amp-sm": `${ampSm}px`,
+    "--hero-motion-amp-sm-neg": `${-ampSm}px`,
   } as const;
 }
 

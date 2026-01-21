@@ -17,15 +17,62 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [homeActiveHref, setHomeActiveHref] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const targets: Array<{ id: string; href: string }> = [
+      { id: "home-services", href: "/services" },
+      { id: "home-about", href: "/about" },
+      { id: "home-resources", href: "/resources" },
+    ];
+
+    let raf = 0;
+    const update = () => {
+      const headerHeightRaw = getComputedStyle(document.documentElement).getPropertyValue("--header-height").trim();
+      const headerHeight = Number.parseFloat(headerHeightRaw) || 80;
+      const probeY = headerHeight + window.innerHeight * 0.22;
+
+      for (const t of targets) {
+        const el = document.getElementById(t.id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= probeY && rect.bottom >= probeY) {
+          setHomeActiveHref(t.href);
+          return;
+        }
+      }
+
+      setHomeActiveHref(null);
+    };
+
+    const onScroll = () => {
+      window.cancelAnimationFrame(raf);
+      raf = window.requestAnimationFrame(update);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   const items = useMemo(
     () =>
       headerNav.map((item) => ({
         ...item,
-        active: isActive(pathname, item.href),
-        children: item.children?.map((c) => ({ ...c, active: isActive(pathname, c.href) })),
+        active: pathname === "/" ? (homeActiveHref ? item.href === homeActiveHref : isActive(pathname, item.href)) : isActive(pathname, item.href),
+        children: item.children?.map((c) => ({
+          ...c,
+          active: pathname === "/" ? false : isActive(pathname, c.href),
+        })),
       })),
-    [pathname],
+    [homeActiveHref, pathname],
   );
 
   useEffect(() => {

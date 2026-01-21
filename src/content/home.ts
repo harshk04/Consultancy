@@ -2,11 +2,16 @@ export const homeContent = {
   hero: {
     tag: "ShreeGuru Leadership & Learning",
     heading: "Guiding Minds. Shaping Leaders.",
+    typewriter: {
+      enabled: true,
+      staticPrefix: "Guiding Minds.",
+      phrases: ["Shaping Leaders.", "Strengthening Learning.", "Building Capacity.", "Sustaining Impact."],
+      ariaLabel: "Guiding Minds. Shaping Leaders.",
+    },
     body: [
       "ShreeGuru Leadership & Learning is a strategic education and leadership consultancy dedicated to strengthening learning ecosystems and developing responsible academic leadership.",
       "We partner with schools and educational institutions to design robust academic systems, cultivate leadership capacity, and support sustainable institutional growth. Our work is grounded in experience, reflection, and a deep respect for the purpose of education.",
-      "We believe enduring excellence is built not through shortcuts, but through clarity, consistency, and principled leadership.",
-    ],
+     ],
     primaryCta: { label: "Explore Services", href: "/services" },
     trustCard: {
       title: "TRUST & VALUE",

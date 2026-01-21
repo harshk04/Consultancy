@@ -40,6 +40,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$
 const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-pill)] border px-5 py-2.5 text-sm font-medium shadow-[0_10px_22px_rgba(15,23,42,0.08)] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-gold)] hover:-translate-y-0.5 hover:shadow-[0_16px_38px_rgba(15,23,42,0.12)] active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:transition-none";
 const variants = {
     primary: "border-[color:color-mix(in_oklab,var(--brand-blue)_18%,transparent)] [background-image:var(--gradient-gold)] text-[color:var(--brand-blue)] hover:text-black hover:brightness-95",
+    blueGold: "border-[color:color-mix(in_oklab,var(--brand-gold)_28%,transparent)] bg-[color:var(--brand-blue-1)] [background-image:var(--gradient-blue)] text-[color:var(--brand-gold)] hover:brightness-110",
     outline: "border-[color:var(--border)] bg-transparent text-[color:var(--fg)] hover:bg-[color:color-mix(in_oklab,var(--brand-blue)_5%,transparent)]",
     ghost: "border-transparent bg-transparent text-[color:var(--fg)] hover:bg-[color:color-mix(in_oklab,var(--brand-blue)_6%,transparent)]",
     headerLink: "border-transparent bg-transparent px-3 py-2 text-sm font-medium text-[color:var(--brand-gold)] hover:text-white"
@@ -53,7 +54,7 @@ function Button({ children, className, variant = "outline", href, ...props }) {
             children: children
         }, void 0, false, {
             fileName: "[project]/src/components/Button.tsx",
-            lineNumber: 32,
+            lineNumber: 34,
             columnNumber: 7
         }, this);
     }
@@ -63,7 +64,7 @@ function Button({ children, className, variant = "outline", href, ...props }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/src/components/Button.tsx",
-        lineNumber: 39,
+        lineNumber: 41,
         columnNumber: 5
     }, this);
 }

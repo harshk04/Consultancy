@@ -122,20 +122,79 @@ function Header() {
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
     const [open, setOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [scrolled, setScrolled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [homeActiveHref, setHomeActiveHref] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Header.useEffect": ()=>{
+            if (pathname !== "/") return;
+            const targets = [
+                {
+                    id: "home-services",
+                    href: "/services"
+                },
+                {
+                    id: "home-about",
+                    href: "/about"
+                },
+                {
+                    id: "home-resources",
+                    href: "/resources"
+                }
+            ];
+            let raf = 0;
+            const update = {
+                "Header.useEffect.update": ()=>{
+                    const headerHeightRaw = getComputedStyle(document.documentElement).getPropertyValue("--header-height").trim();
+                    const headerHeight = Number.parseFloat(headerHeightRaw) || 80;
+                    const probeY = headerHeight + window.innerHeight * 0.22;
+                    for (const t of targets){
+                        const el = document.getElementById(t.id);
+                        if (!el) continue;
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top <= probeY && rect.bottom >= probeY) {
+                            setHomeActiveHref(t.href);
+                            return;
+                        }
+                    }
+                    setHomeActiveHref(null);
+                }
+            }["Header.useEffect.update"];
+            const onScroll = {
+                "Header.useEffect.onScroll": ()=>{
+                    window.cancelAnimationFrame(raf);
+                    raf = window.requestAnimationFrame(update);
+                }
+            }["Header.useEffect.onScroll"];
+            onScroll();
+            window.addEventListener("scroll", onScroll, {
+                passive: true
+            });
+            window.addEventListener("resize", onScroll);
+            return ({
+                "Header.useEffect": ()=>{
+                    window.cancelAnimationFrame(raf);
+                    window.removeEventListener("scroll", onScroll);
+                    window.removeEventListener("resize", onScroll);
+                }
+            })["Header.useEffect"];
+        }
+    }["Header.useEffect"], [
+        pathname
+    ]);
     const items = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "Header.useMemo[items]": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$navigation$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["headerNav"].map({
                 "Header.useMemo[items]": (item)=>({
                         ...item,
-                        active: isActive(pathname, item.href),
+                        active: pathname === "/" ? homeActiveHref ? item.href === homeActiveHref : isActive(pathname, item.href) : isActive(pathname, item.href),
                         children: item.children?.map({
                             "Header.useMemo[items]": (c)=>({
                                     ...c,
-                                    active: isActive(pathname, c.href)
+                                    active: pathname === "/" ? false : isActive(pathname, c.href)
                                 })
                         }["Header.useMemo[items]"])
                     })
             }["Header.useMemo[items]"])
     }["Header.useMemo[items]"], [
+        homeActiveHref,
         pathname
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
@@ -187,12 +246,12 @@ function Header() {
                             className: "h-8 w-auto rounded-md object-contain sm:h-10"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Header.tsx",
-                            lineNumber: 60,
+                            lineNumber: 107,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/Header.tsx",
-                        lineNumber: 55,
+                        lineNumber: 102,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -221,18 +280,18 @@ function Header() {
                                                     strokeLinecap: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 84,
+                                                    lineNumber: 131,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Header.tsx",
-                                                lineNumber: 83,
+                                                lineNumber: 130,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 74,
+                                        lineNumber: 121,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -245,7 +304,7 @@ function Header() {
                                                     children: "RESOURCES"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 90,
+                                                    lineNumber: 137,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -257,29 +316,29 @@ function Header() {
                                                             children: c.label
                                                         }, c.href, false, {
                                                             fileName: "[project]/src/components/Header.tsx",
-                                                            lineNumber: 95,
+                                                            lineNumber: 142,
                                                             columnNumber: 25
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 93,
+                                                    lineNumber: 140,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 89,
+                                            lineNumber: 136,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 88,
+                                        lineNumber: 135,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, item.href, true, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 73,
+                                lineNumber: 120,
                                 columnNumber: 15
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: item.href,
@@ -288,12 +347,12 @@ function Header() {
                                 children: item.label
                             }, item.href, false, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 112,
+                                lineNumber: 159,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/Header.tsx",
-                        lineNumber: 70,
+                        lineNumber: 117,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -305,7 +364,7 @@ function Header() {
                                 children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$navigation$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["headerCta"].label
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 128,
+                                lineNumber: 175,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -327,12 +386,12 @@ function Header() {
                                         strokeLinecap: "round"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 144,
+                                        lineNumber: 191,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 143,
+                                    lineNumber: 190,
                                     columnNumber: 13
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                     width: "20",
@@ -347,29 +406,29 @@ function Header() {
                                         strokeLinecap: "round"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 148,
+                                        lineNumber: 195,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 147,
+                                    lineNumber: 194,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 135,
+                                lineNumber: 182,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Header.tsx",
-                        lineNumber: 127,
+                        lineNumber: 174,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Header.tsx",
-                lineNumber: 54,
+                lineNumber: 101,
                 columnNumber: 7
             }, this),
             open ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -393,7 +452,7 @@ function Header() {
                                                 children: item.label
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Header.tsx",
-                                                lineNumber: 163,
+                                                lineNumber: 210,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -406,18 +465,18 @@ function Header() {
                                                         children: c.label
                                                     }, c.href, false, {
                                                         fileName: "[project]/src/components/Header.tsx",
-                                                        lineNumber: 176,
+                                                        lineNumber: 223,
                                                         columnNumber: 27
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Header.tsx",
-                                                lineNumber: 174,
+                                                lineNumber: 221,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, item.href, true, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 162,
+                                        lineNumber: 209,
                                         columnNumber: 21
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         href: item.href,
@@ -427,7 +486,7 @@ function Header() {
                                         children: item.label
                                     }, item.href, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 192,
+                                        lineNumber: 239,
                                         columnNumber: 21
                                     }, this)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -437,38 +496,38 @@ function Header() {
                                     children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$navigation$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["headerCta"].label
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 206,
+                                    lineNumber: 253,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Header.tsx",
-                            lineNumber: 159,
+                            lineNumber: 206,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/Header.tsx",
-                        lineNumber: 158,
+                        lineNumber: 205,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/Header.tsx",
-                    lineNumber: 157,
+                    lineNumber: 204,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Header.tsx",
-                lineNumber: 156,
+                lineNumber: 203,
                 columnNumber: 9
             }, this) : null
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Header.tsx",
-        lineNumber: 48,
+        lineNumber: 95,
         columnNumber: 5
     }, this);
 }
-_s(Header, "uNZdYWxk7/ykZYTdwiEgbu1pRQU=", false, function() {
+_s(Header, "61fFWtQ8U6pCYacG3wvmZ9tGNe4=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"]
     ];
@@ -514,13 +573,24 @@ const defaultTheme = {
     shadow: "0 18px 45px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.05)",
     radiusCard: 28,
     noiseEnabled: true,
-    heroBlobOpacity: 0.12,
+    heroBlobOpacity: 0.16,
     heroBlobTintBlue: "#2f3cbc",
     heroBlobTintGold: "#e1ca9f",
     heroNoiseEnabled: true,
-    heroVignetteStrength: 0.12
+    heroVignetteStrength: 0.14,
+    heroSpecksEnabled: true,
+    heroSpecksOpacity: 0.1,
+    heroBlobCount: 5,
+    heroMotionStrength: 1,
+    heroTypewriterEnabled: true,
+    heroTypewriterTypeSpeedMs: 58,
+    heroTypewriterDeleteSpeedMs: 34,
+    heroTypewriterPauseMs: 1050,
+    heroTypewriterPhrasesOverride: ""
 };
 function themeToCssVars(theme) {
+    const amp = Math.round(theme.heroMotionStrength * 26);
+    const ampSm = Math.round(theme.heroMotionStrength * 16);
     return {
         "--brand-blue-1": theme.brandBlue1,
         "--brand-blue-2": theme.brandBlue2,
@@ -545,7 +615,13 @@ function themeToCssVars(theme) {
         "--hero-blob-tint-blue": theme.heroBlobTintBlue,
         "--hero-blob-tint-gold": theme.heroBlobTintGold,
         "--hero-noise-opacity": theme.heroNoiseEnabled ? "0.055" : "0",
-        "--hero-vignette-strength": `${theme.heroVignetteStrength}`
+        "--hero-vignette-strength": `${theme.heroVignetteStrength}`,
+        "--hero-specks-opacity": theme.heroSpecksEnabled ? `${theme.heroSpecksOpacity}` : "0",
+        "--hero-motion-strength": `${theme.heroMotionStrength}`,
+        "--hero-motion-amp": `${amp}px`,
+        "--hero-motion-amp-neg": `${-amp}px`,
+        "--hero-motion-amp-sm": `${ampSm}px`,
+        "--hero-motion-amp-sm-neg": `${-ampSm}px`
     };
 }
 function applyThemeToElement(theme, el) {
