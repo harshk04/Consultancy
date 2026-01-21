@@ -1,287 +1,186 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { caseStudies, home, serviceCategories, site } from "@/content/content";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { Reveal } from "@/components/motion/Reveal";
-import { BrandButtonLink } from "@/components/brand/BrandButton";
-import { BrandCard } from "@/components/brand/BrandCard";
-import { BrandBadge } from "@/components/brand/BrandBadge";
-import { BrandSectionHeader } from "@/components/brand/BrandSectionHeader";
-import { IconCircle } from "@/components/ui/IconCircle";
-import { icons } from "@/components/icons";
-import { CTASection } from "@/components/sections/CTASection";
-import { StatsGrid } from "@/components/home/StatsGrid";
-import { ApproachTimeline } from "@/components/home/ApproachTimeline";
-import { FAQAccordion } from "@/components/home/FAQAccordion";
-import { TestimonialsPlaceholder } from "@/components/home/TestimonialsPlaceholder";
-import { ScrollCue } from "@/components/home/ScrollCue";
-import { InfiniteMarquee } from "@/components/brand/InfiniteMarquee";
+import { Accordion } from "@/components/Accordion";
+import { Button } from "@/components/Button";
+import { Card } from "@/components/Card";
+import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { Marquee } from "@/components/Marquee";
+import { PinnedServices } from "@/components/PinnedServices";
+import { Section } from "@/components/Section";
+import { homeContent } from "@/content/home";
 
-export const metadata: Metadata = {
-  title: site.tagline,
-  description: site.positioning,
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: `${site.name} — ${site.tagline}`,
-    description: site.positioning,
-    url: "/",
-  },
-};
-
-export default function HomePage() {
+export default function Home() {
   return (
     <>
-      <section className="hero-mesh border-b border-brand-gold/25" data-nav-scheme="light">
-        <Container className="relative py-16 sm:py-22">
-          <Reveal>
-            <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-              <div className="max-w-3xl space-y-6">
-                <BrandBadge>{site.name}</BrandBadge>
-                <h1 className="font-serif text-4xl tracking-tight text-brand-blue sm:text-6xl">
-                  {home.hero.heading}
-                </h1>
-                <p className="max-w-2xl text-sm leading-relaxed text-brand-blue/80 sm:text-base">
-                  {home.hero.subheading}
-                </p>
+      <Section surface="hero" className="pt-14 sm:pt-20" reveal={false}>
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-7">
+            <span className="inline-flex items-center rounded-[var(--radius-pill)] border border-[color:var(--border)] bg-[color:color-mix(in_oklab,var(--brand-blue)_3%,white)] px-4 py-2 text-xs font-semibold tracking-[0.14em] text-[color:var(--fg)]">
+              {homeContent.hero.tag}
+            </span>
 
-                <div className="flex flex-col gap-3 text-brand-blue/80 sm:flex-row sm:items-center">
-                  <BrandButtonLink href={home.hero.primaryCta.href} size="lg">
-                    {home.hero.primaryCta.label}
-                  </BrandButtonLink>
-                  <BrandButtonLink
-                    href={home.hero.secondaryCta.href}
-                    variant="secondary"
-                    size="lg"
-                  >
-                    {home.hero.secondaryCta.label}
-                  </BrandButtonLink>
-                </div>
+            <h1 className="mt-8 text-5xl leading-[0.98] text-[color:var(--fg)] sm:text-6xl lg:text-7xl">
+              {homeContent.hero.heading}
+            </h1>
 
-                <ScrollCue />
-              </div>
+            <p className="mt-7 max-w-2xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+              {homeContent.hero.body}
+            </p>
 
-              <BrandCard className="relative overflow-hidden p-7">
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 opacity-70"
-                >
-                  <div className="absolute -inset-24 bg-[radial-gradient(900px_520px_at_20%_20%,rgba(30,58,138,0.18),transparent_60%),radial-gradient(760px_420px_at_80%_40%,rgba(200,162,74,0.16),transparent_60%)] motion-reduce:animate-none animate-mesh" />
-                </div>
-                <div className="relative">
-                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-brand-blue/70">
-                    Trust & value
-                  </p>
-                  <div
-                    aria-hidden="true"
-                    className="mt-3 h-px w-16 bg-gradient-to-r from-transparent via-brand-gold to-transparent"
-                  />
-                  <ul className="mt-5 space-y-3 text-sm text-brand-blue">
-                    {home.hero.trustStrip.map((item) => (
-                      <li key={item} className="flex items-start gap-3">
-                        <span
-                          aria-hidden="true"
-                          className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-brand-gold"
-                        />
-                        <span className="leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </BrandCard>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Button variant="outline" href={homeContent.hero.primaryCta.href} className="px-7 py-3 text-base">
+                {homeContent.hero.primaryCta.label}
+              </Button>
             </div>
-          </Reveal>
-        </Container>
-      </section>
 
-      <InfiniteMarquee
-        items={home.valuesStrip.items}
-        speed="normal"
-        direction="left"
-      />
+            <div className="mt-14 flex items-center gap-4 text-sm text-[color:var(--muted)]">
+              <span className="grid h-11 w-11 place-items-center rounded-2xl border border-[color:var(--border)] bg-white/70">
+                <span className="h-6 w-4 rounded-[999px] border border-[color:var(--border)]" aria-hidden="true" />
+              </span>
+              <span>{homeContent.hero.microHint}</span>
+            </div>
+          </div>
 
-      <Section id="services">
-        <Container>
-          <BrandSectionHeader
-            title={home.servicesOverview.heading}
-            description={site.positioning}
-            kicker="Services"
-          />
+          <div className="lg:col-span-5 lg:pt-28">
+            <Card>
+              <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">
+                {homeContent.hero.trustCard.title}
+              </p>
+              <ul className="mt-8 grid gap-4 text-[color:var(--fg)]">
+                {homeContent.hero.trustCard.bullets.map((b) => (
+                  <li key={b} className="flex gap-3 text-base leading-relaxed">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--brand-blue)_45%,transparent)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </div>
+        </div>
+      </Section>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {serviceCategories.map((cat, idx) => (
-              <Reveal key={cat.slug} delay={idx * 0.04}>
-                <Link
-                  href={`/services/${cat.slug}`}
-                  className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                >
-                  <BrandCard className="relative h-full overflow-hidden p-6">
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100"
-                    >
-                      <span className="absolute inset-0 bg-[radial-gradient(520px_220px_at_30%_15%,rgba(30,58,138,0.12),transparent_60%),radial-gradient(480px_220px_at_90%_50%,rgba(200,162,74,0.14),transparent_60%)]" />
-                      <span className="absolute left-0 top-0 h-full w-24 -translate-x-[120%] bg-gradient-to-r from-transparent via-brand-gold/20 to-transparent motion-reduce:animate-none group-hover:animate-sweep" />
-                    </span>
-                    <div className="relative flex items-start gap-4">
-                      <IconCircle icon={icons[cat.icon]} />
-                      <div className="min-w-0">
-                        <h3 className="text-sm font-medium leading-snug text-brand-blue">
-                          {cat.title}
-                        </h3>
-                        <p className="mt-3 text-sm text-brand-blue/75">
-                          View details
-                        </p>
-                      </div>
-                    </div>
-                  </BrandCard>
-                </Link>
-              </Reveal>
+      <Marquee items={homeContent.marquee.items} />
+
+      <Section reveal={false}>
+        <PinnedServices
+          label={homeContent.services.label}
+          title={homeContent.services.title}
+          description={homeContent.services.body}
+          panelSubtitle={homeContent.services.panelSubtitle}
+          panelCta={homeContent.services.panelCta}
+          categories={homeContent.services.categories}
+        />
+      </Section>
+
+      <Section surface="muted">
+        <div className="grid items-start gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{homeContent.about.label}</p>
+            <h2 className="mt-4 text-4xl leading-[1.05] text-[color:var(--fg)] sm:text-5xl">{homeContent.about.title}</h2>
+            <p className="mt-6 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">{homeContent.about.body}</p>
+            <Link
+              href={homeContent.about.link.href}
+              className="mt-10 inline-flex items-center gap-2 rounded-md text-sm font-semibold text-[color:var(--fg)] underline decoration-[color:color-mix(in_oklab,var(--fg)_35%,transparent)] underline-offset-6 transition-colors hover:decoration-[color:var(--fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
+            >
+              {homeContent.about.link.label} <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
+          <div className="lg:col-span-6 lg:pl-10">
+            <Card>
+              <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">
+                {homeContent.about.beliefsCard.title}
+              </p>
+              <ul className="mt-9 grid gap-7 text-base leading-relaxed text-[color:var(--fg)]">
+                {homeContent.about.beliefsCard.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            </Card>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="grid items-start gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{homeContent.approach.label}</p>
+            <h2 className="mt-4 text-4xl leading-[1.05] text-[color:var(--fg)] sm:text-5xl">{homeContent.approach.title}</h2>
+            <p className="mt-6 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">{homeContent.approach.body}</p>
+          </div>
+          <div className="lg:col-span-6 lg:pl-10">
+            <Card>
+              <ul className="grid gap-5 text-base leading-relaxed text-[color:var(--fg)]">
+                {homeContent.approach.card.bullets.map((b) => (
+                  <li key={b} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--brand-blue)_45%,transparent)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </div>
+        </div>
+      </Section>
+
+      <Section surface="muted">
+        <div className="grid gap-10">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{homeContent.resources.label}</p>
+            <h2 className="mt-4 text-4xl leading-[1.05] text-[color:var(--fg)] sm:text-5xl">{homeContent.resources.title}</h2>
+            <p className="mt-6 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">{homeContent.resources.body}</p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {homeContent.resources.cards.map((c) => (
+              <CaseStudyCard key={c.title} title={c.title} description={c.description} href={c.href} linkLabel={c.linkLabel} />
             ))}
           </div>
 
-          <div className="mt-10">
-            <BrandButtonLink href="/services" variant="secondary">
-              {home.servicesOverview.cta.label}
-            </BrandButtonLink>
+          <div>
+            <Button variant="outline" href={homeContent.resources.cta.href} className="px-7 py-3 text-base">
+              {homeContent.resources.cta.label}
+            </Button>
           </div>
-        </Container>
+        </div>
       </Section>
 
-      <Section id="about" className="bg-[linear-gradient(180deg,rgba(200,162,74,0.10),rgba(255,255,255,0.0))]">
-        <Container>
-          <Reveal>
-            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="space-y-4">
-                <BrandSectionHeader
-                  title={home.aboutSnapshot.heading}
-                  description={home.aboutSnapshot.body}
-                  kicker="About"
-                />
-                <div className="pt-2">
-                  <BrandButtonLink href="/about" variant="ghost">
-                    Learn About Our Identity
-                  </BrandButtonLink>
-                </div>
-              </div>
-
-              <BrandCard className="p-7">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-brand-blue/70">
-                  {home.aboutSnapshot.beliefsHeading}
-                </p>
-                <div
-                  aria-hidden="true"
-                  className="mt-3 h-px w-16 bg-gradient-to-r from-transparent via-brand-gold to-transparent"
-                />
-                <ul className="mt-5 space-y-3 text-sm text-brand-blue">
-                  {home.aboutSnapshot.beliefs.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span
-                        aria-hidden="true"
-                        className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-brand-gold"
-                      />
-                      <span className="leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </BrandCard>
-            </div>
-          </Reveal>
-        </Container>
+      <Section>
+        <div className="grid gap-10">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{homeContent.faqs.label}</p>
+            <h2 className="mt-4 text-4xl leading-[1.05] text-[color:var(--fg)] sm:text-5xl">{homeContent.faqs.title}</h2>
+          </div>
+          <Accordion items={homeContent.faqs.items} />
+        </div>
       </Section>
 
-      <Section id="impact-indicators">
-        <Container>
-          <BrandSectionHeader
-            title={home.stats.heading}
-            description="Placeholders are shown until metrics are available."
-            kicker="Impact"
-          />
-          <StatsGrid />
-        </Container>
-      </Section>
-
-      <Section id="approach" className="bg-[linear-gradient(180deg,rgba(30,58,138,0.03),rgba(255,255,255,0.0))]">
-        <Container>
-          <Reveal>
-            <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
-              <div className="space-y-4">
-                <BrandSectionHeader
-                  title={home.approach.heading}
-                  description="A reflective, learner-centred process grounded in ethics and clarity."
-                  kicker="How we work"
-                />
-              </div>
-              <ApproachTimeline />
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
-
-      <Section id="case-studies">
-        <Container>
-          <BrandSectionHeader
-            title="Impact / Case Studies"
-            description="Professional anonymised engagement summaries."
-            kicker="Impact"
-          />
-
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            {caseStudies.map((cs, idx) => (
-              <Reveal key={cs.slug} delay={idx * 0.04}>
-                <Link
-                  href={`/case-studies/${cs.slug}`}
-                  className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                >
-                  <BrandCard className="relative h-full overflow-hidden p-6">
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100"
-                    >
-                      <span className="absolute inset-0 bg-[radial-gradient(540px_260px_at_35%_20%,rgba(30,58,138,0.10),transparent_60%),radial-gradient(420px_220px_at_90%_50%,rgba(200,162,74,0.12),transparent_60%)]" />
-                    </span>
-                    <div className="relative">
-                      <p className="font-serif text-lg tracking-tight text-brand-blue">
-                        {cs.title}
-                      </p>
-                      <p className="mt-3 text-sm leading-relaxed text-brand-blue/80">
-                        {cs.context}
-                      </p>
-                      <p className="mt-5 text-sm font-medium text-brand-blue">
-                        Read case study
-                      </p>
-                    </div>
-                  </BrandCard>
-                </Link>
-              </Reveal>
-            ))}
+      <Section surface="gold">
+        <div className="grid gap-10">
+          <div className="max-w-3xl">
+            <h2 className="font-display text-4xl leading-[1.05] text-[color:var(--brand-blue)] sm:text-5xl">
+              {homeContent.begin.title}
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-[color:color-mix(in_oklab,var(--brand-blue)_85%,white)] sm:text-lg">
+              {homeContent.begin.body}
+            </p>
           </div>
 
-          <div className="mt-10">
-            <BrandButtonLink href="/impact" variant="secondary">
-              Explore impact
-            </BrandButtonLink>
+          <div className="flex flex-wrap items-center gap-5">
+            <Link
+              href={homeContent.begin.primaryCta.href}
+              className="inline-flex items-center justify-center rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-blue)_25%,transparent)] bg-white/50 px-7 py-3 text-base font-semibold text-[color:var(--brand-blue)] transition-colors hover:bg-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
+            >
+              {homeContent.begin.primaryCta.label}
+            </Link>
+            <Link
+              href={homeContent.begin.secondaryCta.href}
+              className="rounded-md text-sm font-semibold text-[color:var(--brand-blue)] underline decoration-[color:color-mix(in_oklab,var(--brand-blue)_35%,transparent)] underline-offset-6 transition-colors hover:decoration-[color:var(--brand-blue)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
+            >
+              {homeContent.begin.secondaryCta.label}
+            </Link>
           </div>
-        </Container>
+        </div>
       </Section>
-
-      <Section id="faq" className="bg-[linear-gradient(180deg,rgba(200,162,74,0.10),rgba(255,255,255,0.0))]">
-        <Container>
-          <BrandSectionHeader title={home.faq.heading} kicker="FAQs" />
-          <FAQAccordion />
-        </Container>
-      </Section>
-
-      <Section id="testimonials">
-        <Container>
-          <BrandSectionHeader title={home.testimonials.heading} kicker="Testimonials" />
-          <div className="mt-10">
-            <TestimonialsPlaceholder />
-          </div>
-        </Container>
-      </Section>
-
-      <CTASection body={home.ctaBand.body} href={home.ctaBand.cta.href} />
     </>
   );
 }

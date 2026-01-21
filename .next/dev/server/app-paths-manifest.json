@@ -1,0 +1,8 @@
+{
+  "/about/page": "app/about/page.js",
+  "/founders-message/page": "app/founders-message/page.js",
+  "/ib-world-schools/page": "app/ib-world-schools/page.js",
+  "/page": "app/page.js",
+  "/resources/page": "app/resources/page.js",
+  "/services/page": "app/services/page.js"
+}

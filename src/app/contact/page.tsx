@@ -1,93 +1,70 @@
-import type { Metadata } from "next";
-import { contactPage, site } from "@/content/content";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { BrandCard } from "@/components/brand/BrandCard";
-import { ContactForm } from "@/components/forms/ContactForm";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { Reveal } from "@/components/motion/Reveal";
-
-export const metadata: Metadata = {
-  title: contactPage.title,
-  description: contactPage.intro,
-  alternates: { canonical: "/contact" },
-  openGraph: { title: `${contactPage.title} · ${site.name}`, url: "/contact" },
-};
+import { Card } from "@/components/Card";
+import { ContactForm } from "@/components/ContactForm";
+import { Section } from "@/components/Section";
+import { contactContent } from "@/content/contact";
 
 export default function ContactPage() {
   return (
     <>
-      <PageHeader title={contactPage.title} intro={contactPage.intro} />
+      <Section surface="hero" reveal={false}>
+        <div className="max-w-3xl">
+          <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">CONTACT</p>
+          <h1 className="mt-4 text-5xl leading-[1] text-[color:var(--fg)] sm:text-6xl">{contactContent.title}</h1>
+          <p className="mt-7 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">{contactContent.intro}</p>
+        </div>
+      </Section>
 
       <Section>
-        <Container>
-          <Reveal>
-            <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-              <BrandCard className="p-6">
-                <h2 className="font-serif text-xl tracking-tight text-brand-blue">
-                  {contactPage.detailsHeading}
-                </h2>
-                <dl className="mt-6 space-y-4 text-sm">
-                  <div className="flex items-start gap-3">
-                    <Mail
-                      className="mt-0.5 h-4 w-4 text-brand-gold"
-                      aria-hidden="true"
-                    />
-                    <div>
-                      <dt className="text-xs font-medium uppercase tracking-[0.18em] text-brand-blue/70">
-                        Email
-                      </dt>
-                      <dd className="mt-1 text-brand-blue">
-                        {site.contactPlaceholders.email}
-                      </dd>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Phone
-                      className="mt-0.5 h-4 w-4 text-brand-gold"
-                      aria-hidden="true"
-                    />
-                    <div>
-                      <dt className="text-xs font-medium uppercase tracking-[0.18em] text-brand-blue/70">
-                        Phone
-                      </dt>
-                      <dd className="mt-1 text-brand-blue">
-                        {site.contactPlaceholders.phone}
-                      </dd>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <MapPin
-                      className="mt-0.5 h-4 w-4 text-brand-gold"
-                      aria-hidden="true"
-                    />
-                    <div>
-                      <dt className="text-xs font-medium uppercase tracking-[0.18em] text-brand-blue/70">
-                        Location
-                      </dt>
-                      <dd className="mt-1 text-brand-blue">
-                        {site.contactPlaceholders.location}
-                      </dd>
-                    </div>
-                  </div>
-                </dl>
-              </BrandCard>
-
-              <BrandCard className="p-6">
-                <h2 className="font-serif text-xl tracking-tight text-brand-blue">
-                  {contactPage.formHeading}
-                </h2>
-                <p className="mt-2 text-sm text-brand-blue/75">
-                  Fields marked with * are required.
-                </p>
-                <div className="mt-6">
-                  <ContactForm />
+        <div className="grid gap-8 lg:grid-cols-12">
+          <Card className="lg:col-span-5">
+            <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">DETAILS</p>
+            <dl className="mt-6 grid gap-5">
+              {contactContent.details.map((d) => (
+                <div key={d.label} className="grid gap-2">
+                  <dt className="text-xs font-semibold tracking-[0.16em] text-[color:var(--muted)]">{d.label}</dt>
+                  <dd className="text-sm leading-relaxed text-[color:var(--fg)]">{d.value}</dd>
                 </div>
-              </BrandCard>
+              ))}
+            </dl>
+          </Card>
+
+          <Card className="lg:col-span-7 lg:ml-8">
+            <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">FORM</p>
+            <h2 className="mt-4 text-2xl leading-tight text-[color:var(--fg)]">Send a message</h2>
+            <p className="mt-4 text-sm leading-relaxed text-[color:var(--muted)]">
+              Share your priorities and context. We will respond with clear next steps.
+            </p>
+            <div className="mt-7">
+              <ContactForm
+                fields={contactContent.form.fields}
+                submitLabel={contactContent.form.submitLabel}
+                note={contactContent.form.note}
+              />
             </div>
-          </Reveal>
-        </Container>
+          </Card>
+        </div>
+      </Section>
+
+      <Section surface="muted">
+        <div className="grid items-start gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{contactContent.guidance.label}</p>
+            <h2 className="mt-4 text-4xl leading-[1.05] text-[color:var(--fg)] sm:text-5xl">{contactContent.guidance.title}</h2>
+            <p className="mt-6 text-sm leading-relaxed text-[color:var(--muted)]">{contactContent.guidance.responseNote}</p>
+          </div>
+          <div className="lg:col-span-7 lg:pl-10">
+            <Card accent="gold">
+              <ul className="grid gap-5 text-base leading-relaxed text-[color:var(--fg)]">
+                {contactContent.guidance.bullets.map((b) => (
+                  <li key={b} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--brand-blue)_45%,transparent)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </div>
+        </div>
       </Section>
     </>
   );
