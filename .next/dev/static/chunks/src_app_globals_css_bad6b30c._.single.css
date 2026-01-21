@@ -5,6 +5,11 @@
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-leading: initial;
       --tw-font-weight: initial;
@@ -24,6 +29,15 @@
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
       --tw-outline-style: solid;
+      --tw-backdrop-blur: initial;
+      --tw-backdrop-brightness: initial;
+      --tw-backdrop-contrast: initial;
+      --tw-backdrop-grayscale: initial;
+      --tw-backdrop-hue-rotate: initial;
+      --tw-backdrop-invert: initial;
+      --tw-backdrop-opacity: initial;
+      --tw-backdrop-saturate: initial;
+      --tw-backdrop-sepia: initial;
       --tw-duration: initial;
       --tw-ease: initial;
       --tw-blur: initial;
@@ -342,6 +356,10 @@
 @layer components;
 
 @layer utilities {
+  .pointer-events-none {
+    pointer-events: none;
+  }
+
   .invisible {
     visibility: hidden;
   }
@@ -376,6 +394,14 @@
 
   .sticky {
     position: sticky;
+  }
+
+  .-inset-14 {
+    inset: calc(var(--spacing) * -14);
+  }
+
+  .inset-0 {
+    inset: calc(var(--spacing) * 0);
   }
 
   .inset-x-0 {
@@ -723,6 +749,10 @@
     rotate: 180deg;
   }
 
+  .transform {
+    transform: var(--tw-rotate-x, ) var(--tw-rotate-y, ) var(--tw-rotate-z, ) var(--tw-skew-x, ) var(--tw-skew-y, );
+  }
+
   .cursor-pointer {
     cursor: pointer;
   }
@@ -841,6 +871,10 @@
 
   .rounded-\[calc\(var\(--radius-card\)-6px\)\] {
     border-radius: calc(var(--radius-card)  - 6px);
+  }
+
+  .rounded-\[calc\(var\(--radius-card\)-8px\)\] {
+    border-radius: calc(var(--radius-card)  - 8px);
   }
 
   .rounded-\[var\(--radius-card\)\] {
@@ -1659,6 +1693,11 @@
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
 
+  .shadow-\[0_10px_20px_rgba\(15\,23\,42\,0\.10\)\] {
+    --tw-shadow: 0 10px 20px var(--tw-shadow-color, #0f172a1a);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+
   .shadow-\[0_10px_20px_rgba\(15\,23\,42\,0\.18\)\] {
     --tw-shadow: 0 10px 20px var(--tw-shadow-color, #0f172a2e);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -1679,11 +1718,6 @@
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
 
-  .shadow-\[var\(--shadow-hover\)\] {
-    --tw-shadow: var(--shadow-hover);
-    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-
   .shadow-none {
     --tw-shadow: 0 0 #0000;
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -1697,6 +1731,12 @@
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+
+  .backdrop-blur {
+    --tw-backdrop-blur: blur(8px);
+    -webkit-backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
+    backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
   }
 
   .transition {
@@ -1759,6 +1799,11 @@
   .ease-out {
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
+  }
+
+  .select-none {
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .group-focus-within\:visible:is(:where(.group):focus-within *) {
@@ -2142,6 +2187,12 @@
   }
 
   @media (min-width: 64rem) {
+    .lg\:items-start {
+      align-items: flex-start;
+    }
+  }
+
+  @media (min-width: 64rem) {
     .lg\:justify-center {
       justify-content: center;
     }
@@ -2156,6 +2207,12 @@
   @media (min-width: 64rem) {
     .lg\:pt-28 {
       padding-top: calc(var(--spacing) * 28);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .lg\:pl-6 {
+      padding-left: calc(var(--spacing) * 6);
     }
   }
 
@@ -2214,8 +2271,9 @@
 }
 
 :root {
-  --shadow: 0 10px 30px #0f172a0f;
-  --shadow-hover: 0 18px 55px #0f172a1f;
+  --shadow: 0 18px 45px #0f172a14, 0 2px 6px #0f172a0d;
+  --shadow-hover: 0 28px 75px #0f172a29, 0 6px 18px #0f172a14;
+  --text-shadow-heading: 0 1px 0 #ffffff47, 0 18px 48px #18206324;
   --radius-card: 28px;
   --radius-pill: 999px;
   --noise-opacity: .055;
@@ -2231,6 +2289,7 @@ body {
 h1, h2, h3, .font-display {
   font-family: var(--font-serif);
   letter-spacing: -.02em;
+  text-shadow: var(--text-shadow-heading);
 }
 
 ::selection {
@@ -2364,6 +2423,31 @@ h1, h2, h3, .font-display {
   initial-value: 0;
 }
 
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false
+}
+
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
@@ -2468,6 +2552,51 @@ h1, h2, h3, .font-display {
   syntax: "*";
   inherits: false;
   initial-value: solid;
+}
+
+@property --tw-backdrop-blur {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-brightness {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-contrast {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-grayscale {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-hue-rotate {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-invert {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-opacity {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-saturate {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-sepia {
+  syntax: "*";
+  inherits: false
 }
 
 @property --tw-duration {

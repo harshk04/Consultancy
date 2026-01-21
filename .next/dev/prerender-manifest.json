@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "f3f9260aed14ffcb7a7c25b54ac76511",
-    "previewModeSigningKey": "b032e601dd47f1f1695f1381fa57af5f441683713c16b3abb7a87aaaac5d395c",
-    "previewModeEncryptionKey": "7ec4043d41c315991d8db565f71dde4f0507d1364659e6e8b0ea26fa49c3bdd5"
-  }
-}
+{"version":4,"routes":{"/resources/blogs/clarity-before-speed":{},"/resources/blogs/building-coherence-through-routines":{},"/resources/blogs/ethical-advisory-work":{},"/resources/blogs/reflection-as-a-system":{},"/resources/case-studies/strengthening-academic-leadership":{},"/resources/case-studies/curriculum-assessment-alignment":{},"/resources/case-studies/teacher-professional-growth":{}},"dynamicRoutes":{"/resources/blogs/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/resources/blogs/[slug]","routeRegex":"^\\/resources\\/blogs\\/([^/]+?)(?:\\/)?$","allowHeader":[]},"/resources/case-studies/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/resources/case-studies/[slug]","routeRegex":"^\\/resources\\/case\\-studies\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"f3f9260aed14ffcb7a7c25b54ac76511","previewModeSigningKey":"b032e601dd47f1f1695f1381fa57af5f441683713c16b3abb7a87aaaac5d395c","previewModeEncryptionKey":"7ec4043d41c315991d8db565f71dde4f0507d1364659e6e8b0ea26fa49c3bdd5"}}

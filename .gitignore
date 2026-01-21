@@ -10,3 +10,7 @@
 /.next/dev
 /.next/dev/server
 /.next/dev/server/app
+
+.next/dev/logs/
+.next/dev/server/
+.next/dev/static/

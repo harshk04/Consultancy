@@ -495,9 +495,14 @@ const defaultTheme = {
     fg: "#0b0d13",
     muted: "#4b5563",
     border: "rgba(15, 23, 42, 0.18)",
-    shadow: "0 10px 30px rgba(15, 23, 42, 0.06)",
+    shadow: "0 18px 45px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.05)",
     radiusCard: 28,
-    noiseEnabled: true
+    noiseEnabled: true,
+    heroBlobOpacity: 0.12,
+    heroBlobTintBlue: "#2f3cbc",
+    heroBlobTintGold: "#e1ca9f",
+    heroNoiseEnabled: true,
+    heroVignetteStrength: 0.12
 };
 function themeToCssVars(theme) {
     return {
@@ -519,7 +524,12 @@ function themeToCssVars(theme) {
         "--shadow": theme.shadow,
         "--radius-card": `${theme.radiusCard}px`,
         "--radius-pill": "999px",
-        "--noise-opacity": theme.noiseEnabled ? "0.055" : "0"
+        "--noise-opacity": theme.noiseEnabled ? "0.055" : "0",
+        "--hero-blob-opacity": `${theme.heroBlobOpacity}`,
+        "--hero-blob-tint-blue": theme.heroBlobTintBlue,
+        "--hero-blob-tint-gold": theme.heroBlobTintGold,
+        "--hero-noise-opacity": theme.heroNoiseEnabled ? "0.055" : "0",
+        "--hero-vignette-strength": `${theme.heroVignetteStrength}`
     };
 }
 function applyThemeToElement(theme, el) {

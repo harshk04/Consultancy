@@ -1,10 +1,34 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card";
+import { ResourceCard } from "@/components/ResourceCard";
 import { Section } from "@/components/Section";
-import { getImpactNote, resourcesContent } from "@/content/resources";
+import { ShareBar } from "@/components/ShareBar";
+import { getImpactNote, impactNotes, resourcesContent } from "@/content/resources";
 
-export default function ImpactNotePage({ params }: { params: { slug: string } }) {
-  const note = getImpactNote(params.slug);
+export function generateStaticParams() {
+  return impactNotes.map((n) => ({ slug: n.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const note = getImpactNote(slug);
+  if (!note) return {};
+  return {
+    title: `${note.title} · ${resourcesContent.impact.title}`,
+    description: note.excerpt,
+    openGraph: {
+      title: note.title,
+      description: note.excerpt,
+      type: "article",
+    },
+  };
+}
+
+export default async function ImpactNotePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const note = getImpactNote(slug);
   if (!note) return notFound();
 
   return (
@@ -17,6 +41,12 @@ export default function ImpactNotePage({ params }: { params: { slug: string } })
             {note.date} • {note.readTime} • {note.tags.join(" • ")}
           </p>
           <p className="mt-7 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">{note.excerpt}</p>
+          <div className="mt-8">
+            <ShareBar title={note.title} path={`/resources/impact/${note.slug}`} />
+          </div>
+          <p className="mt-6 text-sm font-semibold text-[color:var(--fg)] underline decoration-[color:color-mix(in_oklab,var(--fg)_35%,transparent)] underline-offset-4">
+            <Link href="/resources/impact">← Back to Impact</Link>
+          </p>
         </div>
       </Section>
 
@@ -41,6 +71,24 @@ export default function ImpactNotePage({ params }: { params: { slug: string } })
               ))}
             </div>
           </Card>
+        </div>
+      </Section>
+
+      <Section surface="muted">
+        <div className="grid gap-6 md:grid-cols-2">
+          {impactNotes
+            .filter((n) => n.slug !== note.slug)
+            .slice(0, 2)
+            .map((n, idx) => (
+              <ResourceCard
+                key={n.slug}
+                meta={`${n.date} • ${n.readTime}`}
+                title={n.title}
+                excerpt={n.excerpt}
+                href={`/resources/impact/${n.slug}`}
+                accent={idx === 0 ? "gold" : undefined}
+              />
+            ))}
         </div>
       </Section>
     </>

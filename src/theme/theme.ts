@@ -14,6 +14,11 @@ export type ThemeConfig = {
   shadow: string;
   radiusCard: number;
   noiseEnabled: boolean;
+  heroBlobOpacity: number;
+  heroBlobTintBlue: string;
+  heroBlobTintGold: string;
+  heroNoiseEnabled: boolean;
+  heroVignetteStrength: number;
 };
 
 export const defaultTheme: ThemeConfig = {
@@ -27,9 +32,14 @@ export const defaultTheme: ThemeConfig = {
   fg: "#0b0d13",
   muted: "#4b5563",
   border: "rgba(15, 23, 42, 0.18)",
-  shadow: "0 10px 30px rgba(15, 23, 42, 0.06)",
+  shadow: "0 18px 45px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.05)",
   radiusCard: 28,
   noiseEnabled: true,
+  heroBlobOpacity: 0.12,
+  heroBlobTintBlue: "#2f3cbc",
+  heroBlobTintGold: "#e1ca9f",
+  heroNoiseEnabled: true,
+  heroVignetteStrength: 0.12,
 };
 
 export function themeToCssVars(theme: ThemeConfig) {
@@ -58,6 +68,12 @@ export function themeToCssVars(theme: ThemeConfig) {
     "--radius-pill": "999px",
 
     "--noise-opacity": theme.noiseEnabled ? "0.055" : "0",
+
+    "--hero-blob-opacity": `${theme.heroBlobOpacity}`,
+    "--hero-blob-tint-blue": theme.heroBlobTintBlue,
+    "--hero-blob-tint-gold": theme.heroBlobTintGold,
+    "--hero-noise-opacity": theme.heroNoiseEnabled ? "0.055" : "0",
+    "--hero-vignette-strength": `${theme.heroVignetteStrength}`,
   } as const;
 }
 

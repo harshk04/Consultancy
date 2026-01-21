@@ -14,7 +14,7 @@ var _s = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
-function Section({ children, className, id, surface = "default", reveal = true }) {
+function Section({ children, className, id, surface = "default", reveal = true, sectionRef, ...props }) {
     _s();
     const surfaceClass = surface === "hero" ? "hero-surface" : surface === "muted" ? "bg-[color:color-mix(in_oklab,var(--brand-gold)_10%,white)]" : surface === "gold" ? "section-noise [background-image:var(--gradient-gold-soft)]" : "bg-[color:var(--bg)]";
     const ref = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
@@ -49,6 +49,8 @@ function Section({ children, className, id, surface = "default", reveal = true }
         reveal
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+        ...props,
+        ref: sectionRef,
         id: id,
         className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])(surfaceClass, "relative py-16 sm:py-20", className),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -57,12 +59,12 @@ function Section({ children, className, id, surface = "default", reveal = true }
             children: children
         }, void 0, false, {
             fileName: "[project]/src/components/Section.tsx",
-            lineNumber: 57,
+            lineNumber: 63,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Section.tsx",
-        lineNumber: 56,
+        lineNumber: 57,
         columnNumber: 5
     }, this);
 }

@@ -3,6 +3,7 @@ import { Accordion } from "@/components/Accordion";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { HomeHero } from "@/components/HomeHero";
 import { Marquee } from "@/components/Marquee";
 import { PinnedServices } from "@/components/PinnedServices";
 import { Section } from "@/components/Section";
@@ -11,54 +12,7 @@ import { homeContent } from "@/content/home";
 export default function Home() {
   return (
     <>
-      <Section surface="hero" className="pt-14 sm:pt-20" reveal={false}>
-        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-7">
-            <span className="inline-flex items-center rounded-[var(--radius-pill)] border border-[color:var(--border)] bg-[color:color-mix(in_oklab,var(--brand-blue)_3%,white)] px-4 py-2 text-xs font-semibold tracking-[0.14em] text-[color:var(--fg)]">
-              {homeContent.hero.tag}
-            </span>
-
-            <h1 className="mt-8 text-5xl leading-[0.98] text-[color:var(--fg)] sm:text-6xl lg:text-7xl">
-              {homeContent.hero.heading}
-            </h1>
-
-            <div className="mt-7 grid max-w-2xl gap-4 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-              {homeContent.hero.body.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
-
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Button variant="outline" href={homeContent.hero.primaryCta.href} className="px-7 py-3 text-base">
-                {homeContent.hero.primaryCta.label}
-              </Button>
-            </div>
-
-            <div className="mt-14 flex items-center gap-4 text-sm text-[color:var(--muted)]">
-              <span className="grid h-11 w-11 place-items-center rounded-2xl border border-[color:var(--border)] bg-white/70">
-                <span className="h-6 w-4 rounded-[999px] border border-[color:var(--border)]" aria-hidden="true" />
-              </span>
-              <span>{homeContent.hero.microHint}</span>
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 lg:pt-28">
-            <Card>
-              <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">
-                {homeContent.hero.trustCard.title}
-              </p>
-              <ul className="mt-8 grid gap-4 text-[color:var(--fg)]">
-                {homeContent.hero.trustCard.bullets.map((b) => (
-                  <li key={b} className="flex gap-3 text-base leading-relaxed">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--brand-blue)_45%,transparent)]" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          </div>
-        </div>
-      </Section>
+      <HomeHero hero={homeContent.hero} />
 
       <Marquee items={homeContent.marquee.items} />
 

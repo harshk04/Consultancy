@@ -1,4 +1,14 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js"
+  "/about/page": "app/about/page.js",
+  "/founders-message/page": "app/founders-message/page.js",
+  "/ib-world-schools/page": "app/ib-world-schools/page.js",
+  "/page": "app/page.js",
+  "/resources/blogs/[slug]/page": "app/resources/blogs/[slug]/page.js",
+  "/resources/blogs/page": "app/resources/blogs/page.js",
+  "/resources/case-studies/[slug]/page": "app/resources/case-studies/[slug]/page.js",
+  "/resources/case-studies/page": "app/resources/case-studies/page.js",
+  "/resources/impact/page": "app/resources/impact/page.js",
+  "/resources/page": "app/resources/page.js",
+  "/services/page": "app/services/page.js"
 }

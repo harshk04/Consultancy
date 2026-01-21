@@ -238,6 +238,45 @@ export function ThemeStudio() {
                   value={draftTheme.noiseEnabled}
                   onChange={(v) => setDraftTheme((t) => mergeTheme(t, { noiseEnabled: v }))}
                 />
+
+                <details className="rounded-[var(--radius-card)] border border-[color:var(--border)] bg-white px-5 py-4">
+                  <summary className="cursor-pointer select-none text-sm font-semibold text-[color:var(--fg)]">
+                    Advanced (Hero)
+                  </summary>
+                  <div className="mt-5 grid gap-6">
+                    <SliderField
+                      label="HERO BLOB OPACITY"
+                      value={draftTheme.heroBlobOpacity}
+                      min={0.04}
+                      max={0.22}
+                      step={0.01}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroBlobOpacity: clamp(v, 0, 0.35) }))}
+                    />
+                    <ColorField
+                      label="HERO BLOB BLUE"
+                      value={draftTheme.heroBlobTintBlue}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroBlobTintBlue: v }))}
+                    />
+                    <ColorField
+                      label="HERO BLOB GOLD"
+                      value={draftTheme.heroBlobTintGold}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroBlobTintGold: v }))}
+                    />
+                    <ToggleField
+                      label="Hero noise overlay"
+                      value={draftTheme.heroNoiseEnabled}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroNoiseEnabled: v }))}
+                    />
+                    <SliderField
+                      label="HERO VIGNETTE"
+                      value={draftTheme.heroVignetteStrength}
+                      min={0}
+                      max={0.22}
+                      step={0.01}
+                      onChange={(v) => setDraftTheme((t) => mergeTheme(t, { heroVignetteStrength: clamp(v, 0, 0.35) }))}
+                    />
+                  </div>
+                </details>
               </div>
             </div>
           </Card>
@@ -273,7 +312,7 @@ export function ThemeStudio() {
               </div>
             </div>
 
-            <div className="hero-surface px-6 py-10">
+            <div className="hero-surface hero-surface--enhanced px-6 py-10">
               <h2 className="font-display text-3xl leading-tight text-[color:var(--fg)]">Guiding Minds. Shaping Leaders.</h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[color:var(--muted)]">
                 This preview area applies your draft theme only when Preview is enabled. Saving updates the entire site.
@@ -326,4 +365,3 @@ export function ThemeStudio() {
     </div>
   );
 }
-

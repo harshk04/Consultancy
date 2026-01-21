@@ -37,7 +37,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$
 ;
 ;
 ;
-const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-pill)] border px-5 py-2.5 text-sm font-medium shadow-sm transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-gold)] hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:transition-none";
+const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-pill)] border px-5 py-2.5 text-sm font-medium shadow-[0_10px_22px_rgba(15,23,42,0.08)] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-gold)] hover:-translate-y-0.5 hover:shadow-[0_16px_38px_rgba(15,23,42,0.12)] active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:transition-none";
 const variants = {
     primary: "border-[color:color-mix(in_oklab,var(--brand-blue)_18%,transparent)] [background-image:var(--gradient-gold)] text-[color:var(--brand-blue)] hover:text-black hover:brightness-95",
     outline: "border-[color:var(--border)] bg-transparent text-[color:var(--fg)] hover:bg-[color:color-mix(in_oklab,var(--brand-blue)_5%,transparent)]",
@@ -194,81 +194,30 @@ function FoundersMessagePage() {
                 surface: "hero",
                 reveal: false,
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "grid items-start gap-10 lg:grid-cols-12",
+                    className: "max-w-3xl",
                     children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "lg:col-span-7",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]",
-                                    children: "FOUNDER’S MESSAGE"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 13,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                    className: "mt-4 text-5xl leading-[1] text-[color:var(--fg)] sm:text-6xl",
-                                    children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].title
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 14,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "mt-7 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg",
-                                    children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].intro
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 15,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]",
+                            children: "FOUNDER’S MESSAGE"
+                        }, void 0, false, {
                             fileName: "[project]/src/app/founders-message/page.tsx",
                             lineNumber: 12,
                             columnNumber: 11
                         }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "lg:col-span-5 lg:pl-10",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "overflow-hidden rounded-2xl border border-[color:var(--border)]",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                                            src: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].image.src,
-                                            alt: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].image.alt,
-                                            width: 900,
-                                            height: 900,
-                                            className: "h-auto w-full object-cover",
-                                            priority: true
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/founders-message/page.tsx",
-                                            lineNumber: 20,
-                                            columnNumber: 17
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/founders-message/page.tsx",
-                                        lineNumber: 19,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "mt-4 text-xs text-[color:var(--muted)]",
-                                        children: "Portrait"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/founders-message/page.tsx",
-                                        lineNumber: 29,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/founders-message/page.tsx",
-                                lineNumber: 18,
-                                columnNumber: 13
-                            }, this)
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                            className: "mt-4 text-5xl leading-[1] text-[color:var(--fg)] sm:text-6xl",
+                            children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].title
                         }, void 0, false, {
                             fileName: "[project]/src/app/founders-message/page.tsx",
-                            lineNumber: 17,
+                            lineNumber: 13,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "mt-7 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg",
+                            children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].intro
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/founders-message/page.tsx",
+                            lineNumber: 14,
                             columnNumber: 11
                         }, this)
                     ]
@@ -287,66 +236,118 @@ function FoundersMessagePage() {
                     className: "grid gap-6",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "max-w-3xl",
+                            className: "grid gap-10 lg:grid-cols-12 lg:items-start",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "grid gap-5 text-base leading-relaxed text-[color:var(--fg)] sm:text-lg",
-                                    children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].body.map((p)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            children: p
-                                        }, p, false, {
+                                    className: "lg:col-span-7",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "grid gap-5 text-base leading-relaxed text-[color:var(--fg)] sm:text-lg",
+                                            children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].body.map((p)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    children: p
+                                                }, p, false, {
+                                                    fileName: "[project]/src/app/founders-message/page.tsx",
+                                                    lineNumber: 25,
+                                                    columnNumber: 21
+                                                }, this))
+                                        }, void 0, false, {
                                             fileName: "[project]/src/app/founders-message/page.tsx",
-                                            lineNumber: 41,
-                                            columnNumber: 19
-                                        }, this))
-                                }, void 0, false, {
+                                            lineNumber: 23,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "mt-8 text-sm font-semibold text-[color:var(--muted)]",
+                                            children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].signature
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/founders-message/page.tsx",
+                                            lineNumber: 28,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mt-10",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Button$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
+                                                variant: "outline",
+                                                href: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].cta.href,
+                                                className: "px-7 py-3 text-base",
+                                                children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].cta.label
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/founders-message/page.tsx",
+                                                lineNumber: 30,
+                                                columnNumber: 19
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/founders-message/page.tsx",
+                                            lineNumber: 29,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 39,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "mt-8 text-sm font-semibold text-[color:var(--muted)]",
-                                    children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].signature
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 44,
+                                    lineNumber: 22,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "mt-10",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Button$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
-                                        variant: "outline",
-                                        href: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].cta.href,
-                                        className: "px-7 py-3 text-base",
-                                        children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].cta.label
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/founders-message/page.tsx",
-                                        lineNumber: 46,
-                                        columnNumber: 17
-                                    }, this)
-                                }, void 0, false, {
+                                    className: "lg:col-span-5 lg:pl-6",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "overflow-hidden rounded-[var(--radius-card)] border border-[color:var(--border)] bg-white shadow-[var(--shadow)]",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "overflow-hidden rounded-[calc(var(--radius-card)-8px)]",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
+                                                    src: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].image.src,
+                                                    alt: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].image.alt,
+                                                    width: 900,
+                                                    height: 900,
+                                                    className: "h-auto w-full object-cover",
+                                                    priority: true
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/founders-message/page.tsx",
+                                                    lineNumber: 39,
+                                                    columnNumber: 21
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/founders-message/page.tsx",
+                                                lineNumber: 38,
+                                                columnNumber: 19
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/founders-message/page.tsx",
+                                            lineNumber: 37,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "mt-4 text-xs text-[color:var(--muted)]",
+                                            children: "Portrait"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/founders-message/page.tsx",
+                                            lineNumber: 49,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 45,
+                                    lineNumber: 36,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/founders-message/page.tsx",
-                            lineNumber: 38,
+                            lineNumber: 21,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/founders-message/page.tsx",
-                        lineNumber: 37,
+                        lineNumber: 20,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/founders-message/page.tsx",
-                    lineNumber: 36,
+                    lineNumber: 19,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/founders-message/page.tsx",
-                lineNumber: 35,
+                lineNumber: 18,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Section$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Section"], {
@@ -363,7 +364,7 @@ function FoundersMessagePage() {
                                     children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].commitments.label
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 58,
+                                    lineNumber: 59,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -371,7 +372,7 @@ function FoundersMessagePage() {
                                     children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].commitments.title
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 61,
+                                    lineNumber: 62,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -383,31 +384,31 @@ function FoundersMessagePage() {
                                                     className: "mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--brand-blue)_45%,transparent)]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                                    lineNumber: 65,
+                                                    lineNumber: 66,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: b
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                                    lineNumber: 66,
+                                                    lineNumber: 67,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, b, true, {
                                             fileName: "[project]/src/app/founders-message/page.tsx",
-                                            lineNumber: 64,
+                                            lineNumber: 65,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 62,
+                                    lineNumber: 63,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/founders-message/page.tsx",
-                            lineNumber: 57,
+                            lineNumber: 58,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Card"], {
@@ -418,7 +419,7 @@ function FoundersMessagePage() {
                                     children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].note.label
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 74,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -426,7 +427,7 @@ function FoundersMessagePage() {
                                     children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].note.title
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 74,
+                                    lineNumber: 75,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -434,24 +435,24 @@ function FoundersMessagePage() {
                                     children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$content$2f$foundersMessage$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["foundersMessageContent"].note.body
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/founders-message/page.tsx",
-                                    lineNumber: 75,
+                                    lineNumber: 76,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/founders-message/page.tsx",
-                            lineNumber: 72,
+                            lineNumber: 73,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/founders-message/page.tsx",
-                    lineNumber: 56,
+                    lineNumber: 57,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/founders-message/page.tsx",
-                lineNumber: 55,
+                lineNumber: 56,
                 columnNumber: 7
             }, this)
         ]

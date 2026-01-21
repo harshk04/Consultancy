@@ -34,6 +34,12 @@
   --noise-opacity: 0.055;
 
   --header-height: 80px;
+
+  --hero-blob-opacity: 0.12;
+  --hero-blob-tint-blue: var(--brand-blue-2);
+  --hero-blob-tint-gold: var(--brand-gold-1);
+  --hero-noise-opacity: var(--noise-opacity);
+  --hero-vignette-strength: 0.12;
 }
 
 @theme inline {
@@ -86,9 +92,213 @@ h3,
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: var(--noise-opacity);
+  opacity: var(--hero-noise-opacity, var(--noise-opacity));
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
+}
+
+.hero-surface--enhanced {
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    inset 0 0 210px rgba(11, 13, 19, var(--hero-vignette-strength)),
+    inset 0 0 60px rgba(255, 255, 255, 0.35);
+}
+
+.hero-surface--enhanced::before {
+  content: "";
+  position: absolute;
+  inset: -22%;
+  pointer-events: none;
+  opacity: var(--hero-blob-opacity);
+  background-repeat: no-repeat;
+  background-image:
+    radial-gradient(
+      650px 480px at 20% 22%,
+      color-mix(in oklab, var(--hero-blob-tint-blue) 26%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      560px 420px at 84% 16%,
+      color-mix(in oklab, var(--hero-blob-tint-gold) 28%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      540px 520px at 42% 86%,
+      color-mix(in oklab, var(--hero-blob-tint-blue) 18%, transparent),
+      transparent 72%
+    );
+  background-position: 18% 20%, 82% 14%, 40% 86%;
+  transform: translate3d(var(--hero-parallax-x, 0px), var(--hero-parallax-y, 0px), 0);
+  animation: hero-blobs 28s ease-in-out infinite;
+  will-change: transform, background-position;
+}
+
+.hero-enter {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: hero-rise 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.hero-enter--1 {
+  animation-delay: 60ms;
+}
+.hero-enter--2 {
+  animation-delay: 120ms;
+}
+.hero-enter--3 {
+  animation-delay: 180ms;
+}
+.hero-enter--4 {
+  animation-delay: 240ms;
+}
+.hero-enter--5 {
+  animation-delay: 300ms;
+}
+.hero-enter--6 {
+  animation-delay: 360ms;
+}
+.hero-enter--7 {
+  animation-delay: 420ms;
+}
+
+.hero-headline {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-headline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.18em;
+  height: 2px;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--brand-gold) 65%, transparent),
+    transparent
+  );
+  background-size: 240% 100%;
+  background-position: 0% 50%;
+  opacity: 0.55;
+  transform: translateZ(0);
+  animation: hero-underline 11s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-scroll-hint {
+  animation: hero-bob 2.6s ease-in-out infinite;
+}
+
+.hero-primary-cta {
+  border-color: color-mix(in oklab, var(--brand-blue) 20%, transparent);
+  background-color: color-mix(in oklab, white 70%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.hero-trust-card {
+  border-color: color-mix(in oklab, white 52%, transparent);
+  background-color: color-mix(in oklab, white 78%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.hero-card-glass {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0.25) 42%,
+    transparent 75%
+  );
+  opacity: 0.65;
+}
+
+.hero-card-ring {
+  opacity: 0.22;
+  filter: blur(10px);
+  background-image: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    color-mix(in oklab, var(--hero-blob-tint-gold) 40%, transparent) 65deg,
+    transparent 130deg,
+    color-mix(in oklab, var(--hero-blob-tint-blue) 36%, transparent) 240deg,
+    transparent 320deg,
+    transparent 360deg
+  );
+  mask-image: radial-gradient(circle at center, transparent 58%, #000 62%, #000 70%, transparent 74%);
+  animation: hero-ring 18s linear infinite;
+  will-change: transform;
+}
+
+@keyframes hero-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-blobs {
+  0% {
+    background-position: 18% 20%, 82% 14%, 40% 86%;
+    transform: translate3d(calc(var(--hero-parallax-x, 0px) + 4px), calc(var(--hero-parallax-y, 0px) - 4px), 0) scale(1);
+  }
+  50% {
+    background-position: 24% 28%, 76% 10%, 46% 78%;
+    transform: translate3d(var(--hero-parallax-x, 0px), var(--hero-parallax-y, 0px), 0) scale(1.02);
+  }
+  100% {
+    background-position: 14% 22%, 86% 20%, 36% 90%;
+    transform: translate3d(calc(var(--hero-parallax-x, 0px) - 4px), calc(var(--hero-parallax-y, 0px) + 3px), 0) scale(1.03);
+  }
+}
+
+@keyframes hero-underline {
+  0%,
+  60% {
+    background-position: 0% 50%;
+    opacity: 0.38;
+  }
+  75% {
+    background-position: 100% 50%;
+    opacity: 0.6;
+  }
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.38;
+  }
+}
+
+@keyframes hero-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes hero-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-surface--enhanced::before,
+  .hero-headline::after,
+  .hero-scroll-hint,
+  .hero-card-ring,
+  .hero-enter {
+    animation: none;
+  }
+
+  .hero-enter {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .section-noise::after {

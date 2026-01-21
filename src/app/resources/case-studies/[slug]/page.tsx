@@ -1,10 +1,34 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card";
+import { ResourceCard } from "@/components/ResourceCard";
 import { Section } from "@/components/Section";
-import { getCaseStudy, resourcesContent } from "@/content/resources";
+import { ShareBar } from "@/components/ShareBar";
+import { caseStudies, getCaseStudy, resourcesContent } from "@/content/resources";
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const cs = getCaseStudy(params.slug);
+export function generateStaticParams() {
+  return caseStudies.map((c) => ({ slug: c.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const cs = getCaseStudy(slug);
+  if (!cs) return {};
+  return {
+    title: `${cs.title} · ${resourcesContent.caseStudies.title}`,
+    description: cs.excerpt,
+    openGraph: {
+      title: cs.title,
+      description: cs.excerpt,
+      type: "article",
+    },
+  };
+}
+
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const cs = getCaseStudy(slug);
   if (!cs) return notFound();
 
   return (
@@ -19,6 +43,12 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             {cs.date} • {cs.readTime} • {cs.tags.join(" • ")}
           </p>
           <p className="mt-7 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">{cs.excerpt}</p>
+          <div className="mt-8">
+            <ShareBar title={cs.title} path={`/resources/case-studies/${cs.slug}`} />
+          </div>
+          <p className="mt-6 text-sm font-semibold text-[color:var(--fg)] underline decoration-[color:color-mix(in_oklab,var(--fg)_35%,transparent)] underline-offset-4">
+            <Link href="/resources/case-studies">← Back to Case Studies</Link>
+          </p>
         </div>
       </Section>
 
@@ -64,6 +94,24 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             </div>
           </div>
         </Card>
+      </Section>
+
+      <Section surface="muted">
+        <div className="grid gap-6 md:grid-cols-2">
+          {caseStudies
+            .filter((c) => c.slug !== cs.slug)
+            .slice(0, 2)
+            .map((c, idx) => (
+              <ResourceCard
+                key={c.slug}
+                meta={`${c.date} • ${c.readTime}`}
+                title={c.title}
+                excerpt={c.excerpt}
+                href={`/resources/case-studies/${c.slug}`}
+                accent={idx === 0 ? "gold" : undefined}
+              />
+            ))}
+        </div>
       </Section>
     </>
   );

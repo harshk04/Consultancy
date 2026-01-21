@@ -14,3 +14,36 @@
 [00:15:39.312] Server  LOG     ✓ Compiled in 61ms
 [00:15:53.624] Server  LOG     ✓ Compiled in 121ms
 [00:22:00.560] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:53.813] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:27:32.908] Server  WARN    Error: Route "/resources/case-studies/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:29:41.018] Server  LOG     ✓ Compiled in 368ms
+[00:32:06.461] Server  LOG     ✓ Compiled in 253ms
+[00:32:45.401] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/theme/theme.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:32:45.838] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:33:23.445] Server  LOG     ✓ Compiled in 186ms
+[00:33:37.858] Server  LOG     ✓ Compiled in 42ms
+[00:33:46.554] Server  LOG     ✓ Compiled in 22ms
+[00:34:52.967] Server  LOG     ✓ Compiled in 150ms
+[00:34:57.126] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:29.932] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:31.039] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:37:54.937] Server  LOG     ✓ Compiled in 210ms
+[00:38:17.739] Server  LOG     ✓ Compiled in 147ms
+[00:38:38.826] Server  LOG     ✓ Compiled in 161ms
+[00:38:49.705] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:38:49.766] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:38:52.549] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:38:52.568] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:39:26.041] Server  LOG     ✓ Compiled in 184ms
+[00:39:47.710] Server  LOG     ✓ Compiled in 60ms
+[00:39:55.313] Server  LOG     ✓ Compiled in 33ms
+[00:40:33.848] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:40:33.867] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:40:36.202] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:40:36.218] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:40:39.321] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:40:39.338] Server  WARN    Error: Route "/resources/blogs/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:40:45.601] Server  WARN    Error: Route "/resources/case-studies/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:40:45.616] Server  WARN    Error: Route "/resources/case-studies/[slug]" used `params.slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:41:52.033] Server  LOG     ✓ Compiled in 129ms
+[00:41:59.002] Server  LOG     ✓ Compiled in 24ms

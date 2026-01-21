@@ -9,13 +9,14 @@ export function Section({
   id,
   surface = "default",
   reveal = true,
+  sectionRef,
+  ...props
 }: {
   children: React.ReactNode;
-  className?: string;
-  id?: string;
   surface?: "default" | "muted" | "hero" | "gold";
   reveal?: boolean;
-}) {
+  sectionRef?: React.Ref<HTMLElement>;
+} & Omit<React.ComponentPropsWithoutRef<"section">, "children">) {
   const surfaceClass =
     surface === "hero"
       ? "hero-surface"
@@ -53,7 +54,12 @@ export function Section({
   }, [reveal]);
 
   return (
-    <section id={id} className={cn(surfaceClass, "relative py-16 sm:py-20", className)}>
+    <section
+      {...props}
+      ref={sectionRef}
+      id={id}
+      className={cn(surfaceClass, "relative py-16 sm:py-20", className)}
+    >
       <div ref={ref} className={cn("mx-auto w-full max-w-6xl px-6", reveal && "reveal", visible && "is-visible")}>
         {children}
       </div>
