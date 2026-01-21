@@ -22,9 +22,11 @@ export default function Home() {
               {homeContent.hero.heading}
             </h1>
 
-            <p className="mt-7 max-w-2xl text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
-              {homeContent.hero.body}
-            </p>
+            <div className="mt-7 grid max-w-2xl gap-4 text-base leading-relaxed text-[color:var(--muted)] sm:text-lg">
+              {homeContent.hero.body.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button variant="outline" href={homeContent.hero.primaryCta.href} className="px-7 py-3 text-base">

@@ -21,11 +21,19 @@ export default function ServicesPage() {
             <Card key={s.title}>
               <h2 className="text-2xl leading-tight text-[color:var(--fg)]">{s.title}</h2>
               <p className="mt-5 text-sm leading-relaxed text-[color:var(--muted)]">{s.body}</p>
+              <ul className="mt-6 grid gap-3 text-sm leading-relaxed text-[color:var(--fg)]">
+                {s.bullets.map((b) => (
+                  <li key={b} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--brand-blue)_45%,transparent)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
               <Link
                 href="/contact"
                 className="mt-6 inline-flex items-center gap-2 rounded-md text-sm font-semibold text-[color:var(--fg)] underline decoration-[color:color-mix(in_oklab,var(--fg)_35%,transparent)] underline-offset-6 transition-colors hover:decoration-[color:var(--fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
               >
-                tioBegin a conversan <span aria-hidden="true">→</span>
+                Begin a conversation <span aria-hidden="true">→</span>
               </Link>
             </Card>
           ))}

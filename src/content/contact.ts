@@ -1,7 +1,7 @@
 export const contactContent = {
   title: "Contact",
   intro:
-    "Begin with a purposeful conversation. Share a little about your context and what you are hoping to strengthen — we will respond with clear next steps.",
+    "Begin a purposeful conversation. If you are seeking to strengthen leadership, refine learning systems, or bring clarity to your academic direction, we would be pleased to explore how we can support your journey.",
   details: [
     { label: "Email", value: "hello@shreeguru.example" },
     { label: "Phone", value: "+00 0000 000 000" },

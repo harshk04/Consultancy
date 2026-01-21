@@ -43,6 +43,53 @@ export default function AboutPage() {
       <Section surface="muted">
         <div className="grid gap-8 lg:grid-cols-12">
           <Card className="lg:col-span-6" accent="gold">
+            <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{aboutContent.visionMission.label}</p>
+            <h2 className="mt-4 text-2xl leading-tight text-[color:var(--fg)]">{aboutContent.visionMission.visionTitle}</h2>
+            <p className="mt-5 text-sm leading-relaxed text-[color:var(--muted)]">{aboutContent.visionMission.vision}</p>
+            <h3 className="mt-8 text-base font-semibold text-[color:var(--fg)]">{aboutContent.visionMission.missionTitle}</h3>
+            <ul className="mt-4 grid gap-3 text-sm leading-relaxed text-[color:var(--fg)]">
+              {aboutContent.visionMission.missionBullets.map((b) => (
+                <li key={b} className="flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--brand-blue)_45%,transparent)]" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+
+          <div className="grid gap-8 lg:col-span-6">
+            <Card>
+              <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{aboutContent.whoWeWorkWith.label}</p>
+              <h2 className="mt-4 text-2xl leading-tight text-[color:var(--fg)]">{aboutContent.whoWeWorkWith.title}</h2>
+              <ul className="mt-6 grid gap-4 text-sm leading-relaxed text-[color:var(--fg)]">
+                {aboutContent.whoWeWorkWith.bullets.map((b) => (
+                  <li key={b} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--brand-blue)_45%,transparent)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+
+            <Card>
+              <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{aboutContent.whyShreeguru.label}</p>
+              <h2 className="mt-4 text-2xl leading-tight text-[color:var(--fg)]">{aboutContent.whyShreeguru.title}</h2>
+              <ul className="mt-6 grid gap-4 text-sm leading-relaxed text-[color:var(--fg)]">
+                {aboutContent.whyShreeguru.bullets.map((b) => (
+                  <li key={b} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:color-mix(in_oklab,var(--brand-blue)_45%,transparent)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </div>
+        </div>
+      </Section>
+
+      <Section surface="muted">
+        <div className="grid gap-8 lg:grid-cols-12">
+          <Card className="lg:col-span-6" accent="gold">
             <p className="text-xs font-semibold tracking-[0.18em] text-[color:var(--muted)]">{aboutContent.whatToExpect.label}</p>
             <h2 className="mt-4 text-2xl leading-tight text-[color:var(--fg)]">{aboutContent.whatToExpect.title}</h2>
             <ul className="mt-6 grid gap-4 text-sm leading-relaxed text-[color:var(--fg)]">

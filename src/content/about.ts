@@ -2,17 +2,17 @@ export const aboutContent = {
   title: "About",
   intro: [
     "ShreeGuru Leadership & Learning is a purpose-driven consultancy working at the intersection of education, leadership, and institutional development.",
-    "We support schools and learning organisations by combining strategic clarity with practical implementation — always grounded in people, culture, and context.",
+    "Led by an experienced academic leader, our practice draws upon years of work within diverse school contexts. We bring together strategic thinking, operational understanding, and human insight to support institutions as they navigate change, growth, and complexity.",
   ],
   sections: [
     {
       label: "IDENTITY",
       title: "Our Identity",
-      body: "We work alongside leaders who value coherence, principled decision-making, and the conditions required for meaningful learning. Our role is to listen carefully, ask the right questions, and support institutions in translating intentions into implementable systems.",
+      body: "ShreeGuru Leadership & Learning is a purpose-driven consultancy working at the intersection of education, leadership, and institutional development.",
     },
     {
       label: "BELIEFS",
-      title: "What We Believe",
+      title: "Our Belief",
       bullets: [
         "Effective leadership is the foundation of meaningful learning",
         "Strong institutions are shaped by clear systems and shared values",
@@ -20,11 +20,45 @@ export const aboutContent = {
       ],
     },
     {
-      label: "PARTNERSHIP",
-      title: "How We Partner",
-      body: "Engagements are designed collaboratively. We agree clear outcomes, define a practical scope, and work through cycles of reflection and implementation to create long-term impact.",
+      label: "APPROACH",
+      title: "Our Approach",
+      body: "Our approach is collaborative, ethical, and learner-centred, ensuring that change is both thoughtful and lasting.",
     },
   ],
+  visionMission: {
+    label: "VISION & MISSION",
+    visionTitle: "Vision",
+    vision:
+      "To contribute to educational environments where learning is purposeful, leadership is principled, and institutional growth is sustainable.",
+    missionTitle: "Mission",
+    missionBullets: [
+      "To guide academic leaders with insight, integrity, and perspective",
+      "To strengthen teaching, learning, and assessment practices",
+      "To support institutions in building coherent and effective academic systems",
+      "To nurture leadership that serves learners, educators, and the wider community",
+    ],
+  },
+  whoWeWorkWith: {
+    label: "WHO WE WORK WITH",
+    title: "Who We Work With",
+    bullets: [
+      "National and international schools",
+      "School leadership and governance teams",
+      "Educators and academic coordinators",
+      "Educational organisations, trusts, and networks",
+    ],
+  },
+  whyShreeguru: {
+    label: "WHY SHREEGURU",
+    title: "Why ShreeGuru",
+    bullets: [
+      "Leadership grounded in experience and integrity",
+      "Deep understanding of curriculum and school systems",
+      "Thoughtful, human-centred advisory approach",
+      "Practical guidance with strategic clarity",
+      "Commitment to sustainable, long-term impact",
+    ],
+  },
   whatToExpect: {
     label: "WHAT TO EXPECT",
     title: "What You Can Expect",

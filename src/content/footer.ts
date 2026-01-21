@@ -20,6 +20,6 @@ export const footerContent = {
     tagline2: brand.tagline2,
   },
   sitemap: [...flattenNav(headerNav), { label: "Contact", href: "/contact" }],
-  contactLine: "For enquiries and partnerships: hello@shreeguru.example",
+  contactLine: "Begin a purposeful conversation: hello@shreeguru.example",
   copyright: `© ${new Date().getFullYear()} ShreeGuru Leadership & Learning. All rights reserved.`,
 };
