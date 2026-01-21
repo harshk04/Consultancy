@@ -1,3 +1,6 @@
 /node_modules
 /.next/dev/cache
 /.next/dev/build
+/.next
+/.next/dev
+/.next/dev/logs
