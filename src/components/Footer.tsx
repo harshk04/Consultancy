@@ -1,8 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { footerContent } from "@/content/footer";
 import { headerCta } from "@/content/navigation";
-import { assetPath } from "@/lib/assetPath";
 
 export function Footer() {
   return (
@@ -10,13 +8,20 @@ export function Footer() {
       <div className="mx-auto w-full max-w-6xl px-6 py-14">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-3 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:white]"
-              aria-label={footerContent.brand.name}
-            >
-              <Image src={assetPath("/sg-mark.svg")} alt="" width={56} height={56} className="h-14 w-14" />
-            </Link>
+            <div className="inline-flex items-center gap-3">
+              <span className="grid h-12 w-12 place-items-center rounded-2xl border border-[color:color-mix(in_oklab,var(--brand-gold)_35%,transparent)] bg-[color:color-mix(in_oklab,var(--brand-gold)_10%,transparent)]">
+                <span className="font-display text-lg">SG</span>
+              </span>
+              <div>
+                <p className="font-semibold text-[color:var(--brand-gold)]">{footerContent.brand.name}</p>
+                <p className="mt-1 text-sm text-[color:color-mix(in_oklab,var(--brand-gold)_78%,white)]">
+                  {footerContent.brand.tagline1}
+                </p>
+                <p className="text-sm text-[color:color-mix(in_oklab,var(--brand-gold)_78%,white)]">
+                  {footerContent.brand.tagline2}
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="md:col-span-4">

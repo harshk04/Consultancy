@@ -1,13 +1,7 @@
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
-import { blogPosts, getBlogPost, resourcesContent } from "@/content/resources";
-
-export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
-}
-
-export const dynamicParams = false;
+import { getBlogPost, resourcesContent } from "@/content/resources";
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getBlogPost(params.slug);

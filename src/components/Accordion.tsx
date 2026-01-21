@@ -24,7 +24,7 @@ export function Accordion({ items, className }: { items: readonly AccordionItem[
         return (
           <div
             key={item.question}
-            className="rounded-[var(--radius-card)] border border-[color:var(--border)] bg-[color:var(--panel)] shadow-[var(--shadow)] transition-shadow duration-200 hover:shadow-[var(--shadow-hover)] motion-reduce:transition-none"
+            className="rounded-[var(--radius-card)] border border-[color:var(--border)] bg-[color:var(--panel)] shadow-[var(--shadow)]"
           >
             <button
               id={buttonId}

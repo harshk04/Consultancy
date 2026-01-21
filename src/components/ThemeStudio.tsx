@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Card } from "@/components/Card";
 import { cn } from "@/lib/cn";
-import { assetPath } from "@/lib/assetPath";
 import type { ThemeConfig } from "@/theme/theme";
 import { applyThemeToElement, defaultTheme } from "@/theme/theme";
 import { useTheme } from "@/theme/ThemeProvider";
@@ -40,7 +39,7 @@ function ColorField({
         <input
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="h-11 w-full rounded-xl border border-[color:var(--border)] bg-white px-3 text-sm text-[color:var(--fg)] shadow-[var(--shadow-soft)] transition-shadow duration-200 hover:shadow-[var(--shadow-soft-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)] focus-visible:shadow-[var(--shadow-soft-hover)] motion-reduce:transition-none"
+          className="h-11 w-full rounded-xl border border-[color:var(--border)] bg-white px-3 text-sm text-[color:var(--fg)] shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
         />
       </div>
     </label>
@@ -102,7 +101,7 @@ function ToggleField({ label, value, onChange }: { label: string; value: boolean
       >
         <span
           className={cn(
-            "absolute left-1 h-5 w-5 rounded-full bg-white shadow-[var(--shadow-soft)] transition-transform motion-reduce:transition-none",
+            "absolute left-1 h-5 w-5 rounded-full bg-white shadow-sm transition-transform",
             value ? "translate-x-5" : "translate-x-0",
           )}
         />
@@ -253,7 +252,7 @@ export function ThemeStudio() {
               <div className="flex items-center justify-between gap-4 px-5 py-4">
                 <div className="flex items-center gap-3">
                   <Image
-                    src={assetPath("/darkbg.jpeg")}
+                    src="/darkbg.jpeg"
                     alt="Logo"
                     width={160}
                     height={48}
@@ -327,3 +326,4 @@ export function ThemeStudio() {
     </div>
   );
 }
+

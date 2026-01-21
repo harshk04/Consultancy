@@ -3,7 +3,6 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
 import { foundersMessageContent } from "@/content/foundersMessage";
-import { assetPath } from "@/lib/assetPath";
 
 export default function FoundersMessagePage() {
   return (
@@ -19,7 +18,7 @@ export default function FoundersMessagePage() {
             <Card>
               <div className="overflow-hidden rounded-2xl border border-[color:var(--border)]">
                 <Image
-                  src={assetPath(foundersMessageContent.image.src)}
+                  src={foundersMessageContent.image.src}
                   alt={foundersMessageContent.image.alt}
                   width={900}
                   height={900}

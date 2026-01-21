@@ -197,7 +197,7 @@ const footerContent = {
             href: "/contact"
         }
     ],
-    contactLine: "Begin a purposeful conversation: hello@shreeguru.example",
+    contactLine: "For enquiries and partnerships: hello@shreeguru.example",
     copyright: `© ${new Date().getFullYear()} ShreeGuru Leadership & Learning. All rights reserved.`
 };
 }),

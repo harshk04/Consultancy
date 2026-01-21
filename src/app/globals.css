@@ -28,14 +28,11 @@
 
   --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
   --shadow-hover: 0 18px 55px rgba(15, 23, 42, 0.12);
-  --shadow-soft: 0 6px 18px rgba(15, 23, 42, 0.08);
-  --shadow-soft-hover: 0 14px 38px rgba(15, 23, 42, 0.14);
   --radius-card: 28px;
   --radius-pill: 999px;
   --noise-opacity: 0.055;
 
   --header-height: 80px;
-  --heading-shadow: 0 12px 36px rgba(15, 23, 42, 0.16);
 }
 
 @theme inline {
@@ -60,12 +57,6 @@ h3,
 .font-display {
   font-family: var(--font-serif);
   letter-spacing: -0.02em;
-  text-shadow: var(--heading-shadow);
-}
-
-h1,
-h2 {
-  text-wrap: balance;
 }
 
 ::selection {
