@@ -1,7 +1,13 @@
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
-import { getCaseStudy, resourcesContent } from "@/content/resources";
+import { caseStudies, getCaseStudy, resourcesContent } from "@/content/resources";
+
+export async function generateStaticParams() {
+  return caseStudies.map((cs) => ({ slug: cs.slug }));
+}
+
+export const dynamicParams = false;
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
   const cs = getCaseStudy(params.slug);

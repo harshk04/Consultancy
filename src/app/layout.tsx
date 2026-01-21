@@ -7,6 +7,9 @@ import { ThemeProvider } from "@/theme/ThemeProvider";
 import { themeToCssVars } from "@/theme/theme";
 import { defaultTheme } from "@/theme/theme";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const iconUrl = `${basePath}/icon.svg`;
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -20,6 +23,10 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "ShreeGuru Leadership & Learning",
   description: "Guiding minds. Shaping leaders.",
+  icons: {
+    icon: [{ url: iconUrl, type: "image/svg+xml" }],
+    shortcut: [{ url: iconUrl, type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({

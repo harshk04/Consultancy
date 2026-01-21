@@ -1,7 +1,13 @@
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
-import { getImpactNote, resourcesContent } from "@/content/resources";
+import { getImpactNote, impactNotes, resourcesContent } from "@/content/resources";
+
+export async function generateStaticParams() {
+  return impactNotes.map((note) => ({ slug: note.slug }));
+}
+
+export const dynamicParams = false;
 
 export default function ImpactNotePage({ params }: { params: { slug: string } }) {
   const note = getImpactNote(params.slug);

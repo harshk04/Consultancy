@@ -22,7 +22,7 @@ export function ContactForm({
   const [submitted, setSubmitted] = useState(false);
 
   const inputClass =
-    "mt-2 h-11 w-full rounded-xl border border-[color:var(--border)] bg-white px-3 text-sm text-[color:var(--fg)] shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]";
+    "mt-2 h-11 w-full rounded-xl border border-[color:var(--border)] bg-white px-3 text-sm text-[color:var(--fg)] shadow-[var(--shadow-soft)] transition-shadow duration-200 hover:shadow-[var(--shadow-soft-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)] focus-visible:shadow-[var(--shadow-soft-hover)] motion-reduce:transition-none";
 
   return (
     <form
@@ -55,13 +55,13 @@ export function ContactForm({
           name="message"
           placeholder={fields.message.placeholder}
           rows={6}
-          className="mt-2 w-full resize-none rounded-xl border border-[color:var(--border)] bg-white px-3 py-3 text-sm text-[color:var(--fg)] shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
+          className="mt-2 w-full resize-none rounded-xl border border-[color:var(--border)] bg-white px-3 py-3 text-sm text-[color:var(--fg)] shadow-[var(--shadow-soft)] transition-shadow duration-200 hover:shadow-[var(--shadow-soft-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)] focus-visible:shadow-[var(--shadow-soft-hover)] motion-reduce:transition-none"
         />
       </label>
 
       <button
         type="submit"
-        className="mt-2 inline-flex items-center justify-center rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-blue)_18%,transparent)] [background-image:var(--gradient-gold)] px-6 py-3 text-base font-semibold text-[color:var(--brand-blue)] transition-colors hover:text-black hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]"
+        className="mt-2 inline-flex items-center justify-center rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-blue)_18%,transparent)] [background-image:var(--gradient-gold)] px-6 py-3 text-base font-semibold text-[color:var(--brand-blue)] shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:text-black hover:shadow-[var(--shadow-soft-hover)] hover:brightness-95 active:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)] motion-reduce:hover:translate-y-0 motion-reduce:transition-none"
       >
         {submitLabel}
       </button>

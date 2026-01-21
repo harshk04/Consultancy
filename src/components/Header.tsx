@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { brand } from "@/content/brand";
 import { headerCta, headerNav } from "@/content/navigation";
+import { assetPath } from "@/lib/assetPath";
 import { cn } from "@/lib/cn";
 
 function isActive(pathname: string, href: string) {
@@ -58,7 +59,7 @@ export function Header() {
           aria-label={brand.fullName}
         >
           <Image
-            src="/darkbg.jpeg"
+            src={assetPath("/darkbg.jpeg")}
             alt={`${brand.fullName} logo`}
             width={200}
             height={60}
@@ -127,7 +128,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <Link
             href={headerCta.href}
-            className="hidden rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-gold)_35%,transparent)] bg-[color:var(--brand-gold-1)] [background-image:var(--gradient-gold)] px-5 py-2.5 text-sm font-semibold text-[color:var(--brand-blue)] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:text-black hover:brightness-95 active:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:white] lg:inline-flex"
+            className="hidden rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-gold)_35%,transparent)] bg-[color:var(--brand-gold-1)] [background-image:var(--gradient-gold)] px-5 py-2.5 text-sm font-semibold text-[color:var(--brand-blue)] shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:text-black hover:shadow-[var(--shadow-soft-hover)] hover:brightness-95 active:translate-y-0 active:shadow-[var(--shadow-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:white] motion-reduce:hover:translate-y-0 motion-reduce:transition-none lg:inline-flex"
           >
             {headerCta.label}
           </Link>
@@ -206,7 +207,7 @@ export function Header() {
                 <Link
                   href={headerCta.href}
                   onClick={() => setOpen(false)}
-                  className="mt-2 inline-flex items-center justify-center rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-gold)_35%,transparent)] bg-[color:var(--brand-gold-1)] [background-image:var(--gradient-gold)] px-5 py-3 text-base font-semibold text-[color:var(--brand-blue)] transition-colors hover:text-black hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:white]"
+                  className="mt-2 inline-flex items-center justify-center rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-gold)_35%,transparent)] bg-[color:var(--brand-gold-1)] [background-image:var(--gradient-gold)] px-5 py-3 text-base font-semibold text-[color:var(--brand-blue)] shadow-[var(--shadow-soft)] transition-all duration-200 hover:-translate-y-0.5 hover:text-black hover:shadow-[var(--shadow-soft-hover)] hover:brightness-95 active:translate-y-0 active:shadow-[var(--shadow-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:white] motion-reduce:hover:translate-y-0 motion-reduce:transition-none"
                 >
                   {headerCta.label}
                 </Link>
