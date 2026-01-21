@@ -32,7 +32,7 @@ function Accordion({ items, className }) {
             const buttonId = `${baseId}-btn-${idx}`;
             const panelId = `${baseId}-panel-${idx}`;
             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "rounded-[var(--radius-card)] border border-[color:var(--border)] bg-[color:var(--panel)] shadow-[var(--shadow)]",
+                className: "rounded-[var(--radius-card)] border border-[color:var(--border)] bg-[color:var(--panel)] shadow-[var(--shadow)] transition-transform duration-200 ease-out motion-reduce:transition-none hover:-translate-y-0.5 motion-reduce:hover:translate-y-0 hover:shadow-[var(--shadow-hover)]",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         id: buttonId,
@@ -154,7 +154,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$
 ;
 ;
 ;
-const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-pill)] border px-5 py-2.5 text-sm font-medium shadow-sm transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-gold)] hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:transition-none";
+const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-pill)] border px-5 py-2.5 text-sm font-medium shadow-[0_10px_22px_rgba(15,23,42,0.08)] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-gold)] hover:-translate-y-0.5 hover:shadow-[0_16px_38px_rgba(15,23,42,0.12)] active:translate-y-0 motion-reduce:hover:translate-y-0 motion-reduce:transition-none";
 const variants = {
     primary: "border-[color:color-mix(in_oklab,var(--brand-blue)_18%,transparent)] [background-image:var(--gradient-gold)] text-[color:var(--brand-blue)] hover:text-black hover:brightness-95",
     outline: "border-[color:var(--border)] bg-transparent text-[color:var(--fg)] hover:bg-[color:color-mix(in_oklab,var(--brand-blue)_5%,transparent)]",
@@ -396,14 +396,20 @@ var _s = __turbopack_context__.k.signature();
 function PinnedServices({ title, description, label, panelSubtitle, panelCta, categories }) {
     _s();
     const sceneRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const listRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const categoryButtonRefs = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])([]);
     const [activeIndex, setActiveIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [renderIndex, setRenderIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [phase, setPhase] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("idle");
     const [desktop, setDesktop] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [reduceMotion, setReduceMotion] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [scrollProgress, setScrollProgress] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [listHeight, setListHeight] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [bulletYs, setBulletYs] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const steps = categories.length;
     const displayedIndex = reduceMotion ? activeIndex : renderIndex;
     const rendered = categories[displayedIndex] ?? categories[0];
+    const safeSteps = Math.max(1, steps);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "PinnedServices.useEffect": ()=>{
             const mqDesktop = window.matchMedia("(min-width: 1024px)");
@@ -426,6 +432,50 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
             })["PinnedServices.useEffect"];
         }
     }["PinnedServices.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "PinnedServices.useEffect": ()=>{
+            if (!desktop) return;
+            const container = listRef.current;
+            if (!container) return;
+            const measure = {
+                "PinnedServices.useEffect.measure": ()=>{
+                    const listRect = container.getBoundingClientRect();
+                    const nextHeight = Math.max(1, Math.round(listRect.height));
+                    setListHeight(nextHeight);
+                    const nextBulletYs = [];
+                    for(let i = 0; i < safeSteps; i += 1){
+                        const btn = categoryButtonRefs.current[i];
+                        if (!btn) continue;
+                        const btnRect = btn.getBoundingClientRect();
+                        const y = btnRect.top - listRect.top + btnRect.height / 2;
+                        nextBulletYs.push(y);
+                    }
+                    if (nextBulletYs.length === safeSteps) {
+                        setBulletYs(nextBulletYs);
+                    }
+                }
+            }["PinnedServices.useEffect.measure"];
+            measure();
+            const ro = typeof ResizeObserver === "undefined" ? null : new ResizeObserver({
+                "PinnedServices.useEffect": ()=>measure()
+            }["PinnedServices.useEffect"]);
+            ro?.observe(container);
+            const onResize = {
+                "PinnedServices.useEffect.onResize": ()=>measure()
+            }["PinnedServices.useEffect.onResize"];
+            window.addEventListener("resize", onResize);
+            return ({
+                "PinnedServices.useEffect": ()=>{
+                    window.removeEventListener("resize", onResize);
+                    ro?.disconnect();
+                }
+            })["PinnedServices.useEffect"];
+        }
+    }["PinnedServices.useEffect"], [
+        desktop,
+        safeSteps,
+        categories
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "PinnedServices.useEffect": ()=>{
             if (reduceMotion) return;
@@ -477,6 +527,7 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                     const progress = (y - top) / scrollable;
                     const clamped = Math.min(0.9999, Math.max(0, progress));
                     const nextIndex = Math.min(steps - 1, Math.floor(clamped * steps));
+                    setScrollProgress(clamped);
                     setActiveIndex(nextIndex);
                 }
             }["PinnedServices.useEffect.recalcAndUpdate"];
@@ -514,12 +565,49 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
         const top = window.scrollY + el.getBoundingClientRect().top;
         const scrollable = Math.max(1, el.offsetHeight - window.innerHeight);
         const segmentStart = index / steps;
+        setScrollProgress(Math.min(0.9999, Math.max(0, segmentStart)));
         const y = top + scrollable * segmentStart + 1;
         window.scrollTo({
             top: y,
             behavior: reduceMotion ? "auto" : "smooth"
         });
     };
+    const { trackTop, trackBottom, fillBottom, bulletPoints, measuredHeight } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "PinnedServices.useMemo": ()=>{
+            const fallbackHeight = listHeight ?? 320;
+            const padding = 10;
+            const fallbackYs = safeSteps <= 1 ? [
+                fallbackHeight / 2
+            ] : Array.from({
+                length: safeSteps
+            }, {
+                "PinnedServices.useMemo": (_, idx)=>padding + (fallbackHeight - padding * 2) * (idx / (safeSteps - 1))
+            }["PinnedServices.useMemo"]);
+            const points = bulletYs.length === safeSteps ? bulletYs : fallbackYs;
+            const top = points[0] ?? 0;
+            const bottom = points[safeSteps - 1] ?? top;
+            const clamped = Math.min(0.9999, Math.max(0, scrollProgress));
+            const segmentIndex = Math.min(safeSteps - 1, Math.floor(clamped * safeSteps));
+            const segmentStart = segmentIndex / safeSteps;
+            const segmentEnd = (segmentIndex + 1) / safeSteps;
+            const segmentT = (clamped - segmentStart) / Math.max(1e-6, segmentEnd - segmentStart);
+            const startY = points[segmentIndex] ?? top;
+            const endY = points[Math.min(segmentIndex + 1, safeSteps - 1)] ?? bottom;
+            const fillY = startY + (endY - startY) * segmentT;
+            return {
+                trackTop: top,
+                trackBottom: bottom,
+                fillBottom: fillY,
+                bulletPoints: points,
+                measuredHeight: fallbackHeight
+            };
+        }
+    }["PinnedServices.useMemo"], [
+        bulletYs,
+        listHeight,
+        safeSteps,
+        scrollProgress
+    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -530,7 +618,7 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/src/components/PinnedServices.tsx",
-                        lineNumber: 135,
+                        lineNumber: 216,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -538,7 +626,7 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/src/components/PinnedServices.tsx",
-                        lineNumber: 136,
+                        lineNumber: 217,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -546,13 +634,13 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                         children: description
                     }, void 0, false, {
                         fileName: "[project]/src/components/PinnedServices.tsx",
-                        lineNumber: 137,
+                        lineNumber: 218,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/PinnedServices.tsx",
-                lineNumber: 134,
+                lineNumber: 215,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -569,29 +657,90 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "lg:col-span-5",
                                 children: [
+                                    !desktop ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mb-5 rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-gold)_22%,transparent)] bg-white px-4 py-3",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "relative flex items-center justify-between gap-3",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "absolute left-3 right-3 top-1/2 h-px -translate-y-1/2 bg-[color:color-mix(in_oklab,var(--border)_80%,transparent)]"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/PinnedServices.tsx",
+                                                    lineNumber: 241,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "absolute left-3 top-1/2 h-[2px] -translate-y-1/2 bg-[image:var(--gradient-gold)] transition-[width] duration-200 ease-out motion-reduce:transition-none",
+                                                    style: {
+                                                        width: steps <= 1 ? "0%" : `${activeIndex / (steps - 1) * 100}%`
+                                                    },
+                                                    "aria-hidden": "true"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/PinnedServices.tsx",
+                                                    lineNumber: 242,
+                                                    columnNumber: 21
+                                                }, this),
+                                                categories.map((c, idx)=>{
+                                                    const isActive = idx === activeIndex;
+                                                    const isCompleted = idx < activeIndex;
+                                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                        type: "button",
+                                                        onClick: ()=>jumpTo(idx),
+                                                        "aria-current": isActive ? "step" : undefined,
+                                                        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("relative z-10 grid h-8 w-8 place-items-center rounded-full border bg-white transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]", isCompleted ? "border-[color:color-mix(in_oklab,var(--brand-gold)_40%,var(--border))] bg-[color:color-mix(in_oklab,var(--brand-gold)_18%,white)]" : "border-[color:var(--border)]", isActive && "h-9 w-9 border-[color:color-mix(in_oklab,var(--brand-gold)_45%,transparent)] bg-[image:var(--gradient-gold)] shadow-[0_10px_20px_rgba(15,23,42,0.18)]"),
+                                                        title: c.title,
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("text-xs font-semibold", isActive ? "text-[color:var(--brand-blue)]" : "text-[color:var(--fg)]"),
+                                                            children: idx + 1
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/PinnedServices.tsx",
+                                                            lineNumber: 265,
+                                                            columnNumber: 27
+                                                        }, this)
+                                                    }, c.id, false, {
+                                                        fileName: "[project]/src/components/PinnedServices.tsx",
+                                                        lineNumber: 251,
+                                                        columnNumber: 25
+                                                    }, this);
+                                                })
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/PinnedServices.tsx",
+                                            lineNumber: 240,
+                                            columnNumber: 19
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/PinnedServices.tsx",
+                                        lineNumber: 239,
+                                        columnNumber: 17
+                                    }, this) : null,
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        ref: listRef,
                                         className: "grid gap-4",
                                         children: categories.map((c, idx)=>{
                                             const isActive = idx === activeIndex;
                                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 type: "button",
                                                 onClick: ()=>jumpTo(idx),
-                                                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("group flex w-full items-center gap-4 rounded-[calc(var(--radius-card)-6px)] border bg-white px-5 py-4 text-left transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]", "hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0", isActive ? "border-[color:var(--border-gold)] shadow-[var(--shadow-hover)]" : "border-[color:var(--border)] shadow-[var(--shadow)]"),
+                                                ref: (node)=>{
+                                                    categoryButtonRefs.current[idx] = node;
+                                                },
+                                                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("group flex w-full items-center gap-4 rounded-[calc(var(--radius-card)-6px)] border bg-white px-5 py-4 text-left shadow-[var(--shadow)] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)] hover:shadow-[var(--shadow-hover)]", "hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0", isActive ? "border-[color:var(--border-gold)] bg-[image:var(--gradient-gold-soft)]" : "border-[color:var(--border)]"),
                                                 "aria-current": isActive ? "true" : undefined,
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("grid h-11 w-11 shrink-0 place-items-center rounded-xl border bg-white text-[color:var(--fg)] transition-colors", isActive ? "border-[color:var(--border-gold)]" : "border-[color:var(--border)]"),
+                                                        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("grid h-11 w-11 shrink-0 place-items-center rounded-xl border bg-white text-[color:var(--fg)] transition-colors", isActive ? "border-[color:var(--border-gold)] bg-[color:color-mix(in_oklab,white_75%,var(--brand-gold)_25%)]" : "border-[color:var(--border)]"),
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Icon$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Icon"], {
                                                             name: c.icon,
                                                             className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])(isActive ? "text-[color:var(--brand-blue)]" : "text-[color:var(--fg)]")
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/PinnedServices.tsx",
-                                                            lineNumber: 180,
+                                                            lineNumber: 303,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/PinnedServices.tsx",
-                                                        lineNumber: 174,
+                                                        lineNumber: 295,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -602,33 +751,33 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                                                 children: c.title
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/PinnedServices.tsx",
-                                                                lineNumber: 183,
+                                                                lineNumber: 306,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "mt-1 text-sm leading-relaxed text-[color:var(--muted)]",
+                                                                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("mt-1 text-sm leading-relaxed text-[color:var(--muted)]", isActive && "text-[color:color-mix(in_oklab,var(--brand-blue)_48%,var(--muted))]"),
                                                                 children: c.blurb
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/PinnedServices.tsx",
-                                                                lineNumber: 186,
+                                                                lineNumber: 309,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/PinnedServices.tsx",
-                                                        lineNumber: 182,
+                                                        lineNumber: 305,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, c.id, true, {
                                                 fileName: "[project]/src/components/PinnedServices.tsx",
-                                                lineNumber: 161,
+                                                lineNumber: 279,
                                                 columnNumber: 21
                                             }, this);
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/PinnedServices.tsx",
-                                        lineNumber: 157,
+                                        lineNumber: 275,
                                         columnNumber: 15
                                     }, this),
                                     desktop ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -636,17 +785,88 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                         children: "Scroll to reveal each category, or click to jump."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/PinnedServices.tsx",
-                                        lineNumber: 194,
+                                        lineNumber: 324,
                                         columnNumber: 17
                                     }, this) : null
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/PinnedServices.tsx",
-                                lineNumber: 156,
+                                lineNumber: 237,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "lg:col-span-7 lg:pl-8",
+                                className: "hidden lg:col-span-1 lg:flex lg:justify-center",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "relative w-12",
+                                    style: {
+                                        height: measuredHeight
+                                    },
+                                    "aria-label": "Services progress",
+                                    role: "group",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "absolute left-1/2 w-px -translate-x-1/2 bg-[color:color-mix(in_oklab,var(--border)_85%,transparent)]",
+                                            style: {
+                                                top: trackTop,
+                                                height: Math.max(1, trackBottom - trackTop)
+                                            },
+                                            "aria-hidden": "true"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/PinnedServices.tsx",
+                                            lineNumber: 337,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "absolute left-1/2 w-[2px] -translate-x-1/2 bg-[image:var(--gradient-gold)] transition-[height] duration-150 ease-out motion-reduce:transition-none",
+                                            style: {
+                                                top: trackTop,
+                                                height: Math.max(0, fillBottom - trackTop)
+                                            },
+                                            "aria-hidden": "true"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/PinnedServices.tsx",
+                                            lineNumber: 342,
+                                            columnNumber: 17
+                                        }, this),
+                                        categories.map((c, idx)=>{
+                                            const isActive = idx === activeIndex;
+                                            const isCompleted = idx < activeIndex;
+                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                type: "button",
+                                                onClick: ()=>jumpTo(idx),
+                                                "aria-current": isActive ? "step" : undefined,
+                                                title: c.title,
+                                                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("absolute left-1/2 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border bg-white transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]", "h-4 w-4", isCompleted ? "border-[color:color-mix(in_oklab,var(--brand-gold)_45%,var(--border))] bg-[color:color-mix(in_oklab,var(--brand-gold)_16%,white)]" : "border-[color:var(--border)]", isActive && "h-5 w-5 border-[color:color-mix(in_oklab,var(--brand-gold)_55%,transparent)] bg-[image:var(--gradient-gold)] shadow-[0_12px_28px_rgba(15,23,42,0.22)]", "hover:shadow-[0_12px_28px_rgba(15,23,42,0.16)]"),
+                                                style: {
+                                                    top: bulletPoints[idx] ?? 0
+                                                },
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "sr-only",
+                                                    children: c.title
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/PinnedServices.tsx",
+                                                    lineNumber: 370,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, c.id, false, {
+                                                fileName: "[project]/src/components/PinnedServices.tsx",
+                                                lineNumber: 352,
+                                                columnNumber: 21
+                                            }, this);
+                                        })
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/PinnedServices.tsx",
+                                    lineNumber: 331,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/PinnedServices.tsx",
+                                lineNumber: 330,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "lg:col-span-6 lg:pl-8",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$cn$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("rounded-[var(--radius-card)] border bg-[color:var(--panel)] p-8 shadow-[var(--shadow)]", "transition-shadow duration-200", "border-[color:var(--border)]"),
                                     children: [
@@ -658,7 +878,7 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                                     children: "SERVICES"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/PinnedServices.tsx",
-                                                    lineNumber: 214,
+                                                    lineNumber: 391,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -666,7 +886,7 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                                     children: rendered.title
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/PinnedServices.tsx",
-                                                    lineNumber: 215,
+                                                    lineNumber: 392,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -674,7 +894,7 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                                     children: rendered.blurb
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/PinnedServices.tsx",
-                                                    lineNumber: 218,
+                                                    lineNumber: 395,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -682,7 +902,7 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                                     children: panelSubtitle
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/PinnedServices.tsx",
-                                                    lineNumber: 220,
+                                                    lineNumber: 397,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -692,18 +912,18 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                                             children: item
                                                         }, item, false, {
                                                             fileName: "[project]/src/components/PinnedServices.tsx",
-                                                            lineNumber: 223,
+                                                            lineNumber: 400,
                                                             columnNumber: 23
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/PinnedServices.tsx",
-                                                    lineNumber: 221,
+                                                    lineNumber: 398,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/PinnedServices.tsx",
-                                            lineNumber: 208,
+                                            lineNumber: 385,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -715,12 +935,12 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                                 children: panelCta.label
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/PinnedServices.tsx",
-                                                lineNumber: 234,
+                                                lineNumber: 411,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/PinnedServices.tsx",
-                                            lineNumber: 233,
+                                            lineNumber: 410,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -735,7 +955,7 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/PinnedServices.tsx",
-                                                    lineNumber: 241,
+                                                    lineNumber: 418,
                                                     columnNumber: 21
                                                 }, this) : null,
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -744,50 +964,50 @@ function PinnedServices({ title, description, label, panelSubtitle, panelCta, ca
                                                     children: "Explore all services →"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/PinnedServices.tsx",
-                                                    lineNumber: 245,
+                                                    lineNumber: 422,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/PinnedServices.tsx",
-                                            lineNumber: 239,
+                                            lineNumber: 416,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/PinnedServices.tsx",
-                                    lineNumber: 201,
+                                    lineNumber: 378,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/PinnedServices.tsx",
-                                lineNumber: 200,
+                                lineNumber: 377,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/PinnedServices.tsx",
-                        lineNumber: 155,
+                        lineNumber: 236,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/PinnedServices.tsx",
-                    lineNumber: 148,
+                    lineNumber: 229,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/PinnedServices.tsx",
-                lineNumber: 140,
+                lineNumber: 221,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/PinnedServices.tsx",
-        lineNumber: 133,
+        lineNumber: 214,
         columnNumber: 5
     }, this);
 }
-_s(PinnedServices, "jazVYVR6tM/oAbfGNojkuqFvFm4=");
+_s(PinnedServices, "hpnRB/QEs7zquYU0nqZQKKFVyJQ=");
 _c = PinnedServices;
 var _c;
 __turbopack_context__.k.register(_c, "PinnedServices");

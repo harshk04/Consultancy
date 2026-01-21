@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { footerContent } from "@/content/footer";
 import { headerCta } from "@/content/navigation";
+import { brand } from "@/content/brand";
 
 export function Footer() {
   return (
@@ -9,17 +11,16 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="inline-flex items-center gap-3">
-              <span className="grid h-12 w-12 place-items-center rounded-2xl border border-[color:color-mix(in_oklab,var(--brand-gold)_35%,transparent)] bg-[color:color-mix(in_oklab,var(--brand-gold)_10%,transparent)]">
-                <span className="font-display text-lg">SG</span>
-              </span>
+              <Image
+                src="/darkbg.jpeg"
+                alt={`${brand.fullName} logo`}
+                width={200}
+                height={60}
+                className="h-10 w-auto rounded-md object-contain"
+              />
               <div>
-                <p className="font-semibold text-[color:var(--brand-gold)]">{footerContent.brand.name}</p>
-                <p className="mt-1 text-sm text-[color:color-mix(in_oklab,var(--brand-gold)_78%,white)]">
-                  {footerContent.brand.tagline1}
-                </p>
-                <p className="text-sm text-[color:color-mix(in_oklab,var(--brand-gold)_78%,white)]">
-                  {footerContent.brand.tagline2}
-                </p>
+                <p className="font-semibold text-[color:var(--brand-gold)]">{footerContent.brand.tagline1}</p>
+                <p className="mt-1 text-sm text-[color:color-mix(in_oklab,var(--brand-gold)_78%,white)]">{footerContent.brand.tagline2}</p>
               </div>
             </div>
           </div>

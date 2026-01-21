@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/Button";
 import { Icon } from "@/components/Icon";
 import { cn } from "@/lib/cn";
@@ -30,17 +30,24 @@ export function PinnedServices({
   categories: readonly ServiceCategory[];
 }) {
   const sceneRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const categoryButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [renderIndex, setRenderIndex] = useState(0);
   const [phase, setPhase] = useState<"in" | "out" | "idle">("idle");
   const [desktop, setDesktop] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [listHeight, setListHeight] = useState<number | null>(null);
+  const [bulletYs, setBulletYs] = useState<number[]>([]);
 
   const steps = categories.length;
 
   const displayedIndex = reduceMotion ? activeIndex : renderIndex;
   const rendered = categories[displayedIndex] ?? categories[0];
+
+  const safeSteps = Math.max(1, steps);
 
   useEffect(() => {
     const mqDesktop = window.matchMedia("(min-width: 1024px)");
@@ -56,6 +63,47 @@ export function PinnedServices({
       mqReduce.removeEventListener("change", syncReduce);
     };
   }, []);
+
+  useEffect(() => {
+    if (!desktop) return;
+    const container = listRef.current;
+    if (!container) return;
+
+    const measure = () => {
+      const listRect = container.getBoundingClientRect();
+      const nextHeight = Math.max(1, Math.round(listRect.height));
+      setListHeight(nextHeight);
+
+      const nextBulletYs: number[] = [];
+      for (let i = 0; i < safeSteps; i += 1) {
+        const btn = categoryButtonRefs.current[i];
+        if (!btn) continue;
+        const btnRect = btn.getBoundingClientRect();
+        const y = btnRect.top - listRect.top + btnRect.height / 2;
+        nextBulletYs.push(y);
+      }
+
+      if (nextBulletYs.length === safeSteps) {
+        setBulletYs(nextBulletYs);
+      }
+    };
+
+    measure();
+
+    const ro =
+      typeof ResizeObserver === "undefined"
+        ? null
+        : new ResizeObserver(() => measure());
+    ro?.observe(container);
+
+    const onResize = () => measure();
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      ro?.disconnect();
+    };
+  }, [desktop, safeSteps, categories]);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -97,6 +145,7 @@ export function PinnedServices({
       const progress = (y - top) / scrollable;
       const clamped = Math.min(0.9999, Math.max(0, progress));
       const nextIndex = Math.min(steps - 1, Math.floor(clamped * steps));
+      setScrollProgress(clamped);
       setActiveIndex(nextIndex);
     };
 
@@ -125,9 +174,41 @@ export function PinnedServices({
     const top = window.scrollY + el.getBoundingClientRect().top;
     const scrollable = Math.max(1, el.offsetHeight - window.innerHeight);
     const segmentStart = index / steps;
+    setScrollProgress(Math.min(0.9999, Math.max(0, segmentStart)));
     const y = top + scrollable * segmentStart + 1;
     window.scrollTo({ top: y, behavior: reduceMotion ? "auto" : "smooth" });
   };
+
+  const { trackTop, trackBottom, fillBottom, bulletPoints, measuredHeight } = useMemo(() => {
+    const fallbackHeight = listHeight ?? 320;
+    const padding = 10;
+    const fallbackYs =
+      safeSteps <= 1
+        ? [fallbackHeight / 2]
+        : Array.from({ length: safeSteps }, (_, idx) => padding + (fallbackHeight - padding * 2) * (idx / (safeSteps - 1)));
+
+    const points = bulletYs.length === safeSteps ? bulletYs : fallbackYs;
+    const top = points[0] ?? 0;
+    const bottom = points[safeSteps - 1] ?? top;
+
+    const clamped = Math.min(0.9999, Math.max(0, scrollProgress));
+    const segmentIndex = Math.min(safeSteps - 1, Math.floor(clamped * safeSteps));
+    const segmentStart = segmentIndex / safeSteps;
+    const segmentEnd = (segmentIndex + 1) / safeSteps;
+    const segmentT = (clamped - segmentStart) / Math.max(1e-6, segmentEnd - segmentStart);
+
+    const startY = points[segmentIndex] ?? top;
+    const endY = points[Math.min(segmentIndex + 1, safeSteps - 1)] ?? bottom;
+    const fillY = startY + (endY - startY) * segmentT;
+
+    return {
+      trackTop: top,
+      trackBottom: bottom,
+      fillBottom: fillY,
+      bulletPoints: points,
+      measuredHeight: fallbackHeight,
+    };
+  }, [bulletYs, listHeight, safeSteps, scrollProgress]);
 
   return (
     <div>
@@ -154,7 +235,44 @@ export function PinnedServices({
         >
           <div className={cn("grid gap-8 lg:grid-cols-12", desktop && "items-stretch")}>
             <div className="lg:col-span-5">
-              <div className="grid gap-4">
+              {!desktop ? (
+                <div className="mb-5 rounded-[var(--radius-pill)] border border-[color:color-mix(in_oklab,var(--brand-gold)_22%,transparent)] bg-white px-4 py-3">
+                  <div className="relative flex items-center justify-between gap-3">
+                    <div className="absolute left-3 right-3 top-1/2 h-px -translate-y-1/2 bg-[color:color-mix(in_oklab,var(--border)_80%,transparent)]" />
+                    <div
+                      className="absolute left-3 top-1/2 h-[2px] -translate-y-1/2 bg-[image:var(--gradient-gold)] transition-[width] duration-200 ease-out motion-reduce:transition-none"
+                      style={{ width: steps <= 1 ? "0%" : `${(activeIndex / (steps - 1)) * 100}%` }}
+                      aria-hidden="true"
+                    />
+                    {categories.map((c, idx) => {
+                      const isActive = idx === activeIndex;
+                      const isCompleted = idx < activeIndex;
+                      return (
+                        <button
+                          key={c.id}
+                          type="button"
+                          onClick={() => jumpTo(idx)}
+                          aria-current={isActive ? "step" : undefined}
+                          className={cn(
+                            "relative z-10 grid h-8 w-8 place-items-center rounded-full border bg-white transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]",
+                            isCompleted
+                              ? "border-[color:color-mix(in_oklab,var(--brand-gold)_40%,var(--border))] bg-[color:color-mix(in_oklab,var(--brand-gold)_18%,white)]"
+                              : "border-[color:var(--border)]",
+                            isActive && "h-9 w-9 border-[color:color-mix(in_oklab,var(--brand-gold)_45%,transparent)] bg-[image:var(--gradient-gold)] shadow-[0_10px_20px_rgba(15,23,42,0.18)]",
+                          )}
+                          title={c.title}
+                        >
+                          <span className={cn("text-xs font-semibold", isActive ? "text-[color:var(--brand-blue)]" : "text-[color:var(--fg)]")}>
+                            {idx + 1}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null}
+
+              <div ref={listRef} className="grid gap-4">
                 {categories.map((c, idx) => {
                   const isActive = idx === activeIndex;
                   return (
@@ -162,19 +280,24 @@ export function PinnedServices({
                       key={c.id}
                       type="button"
                       onClick={() => jumpTo(idx)}
+                      ref={(node) => {
+                        categoryButtonRefs.current[idx] = node;
+                      }}
                       className={cn(
-                        "group flex w-full items-center gap-4 rounded-[calc(var(--radius-card)-6px)] border bg-white px-5 py-4 text-left transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]",
+                        "group flex w-full items-center gap-4 rounded-[calc(var(--radius-card)-6px)] border bg-white px-5 py-4 text-left shadow-[var(--shadow)] transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)] hover:shadow-[var(--shadow-hover)]",
                         "hover:-translate-y-0.5 active:translate-y-0 motion-reduce:hover:translate-y-0",
                         isActive
-                          ? "border-[color:var(--border-gold)] shadow-[var(--shadow-hover)]"
-                          : "border-[color:var(--border)] shadow-[var(--shadow)]",
+                          ? "border-[color:var(--border-gold)] bg-[image:var(--gradient-gold-soft)]"
+                          : "border-[color:var(--border)]",
                       )}
                       aria-current={isActive ? "true" : undefined}
                     >
                       <span
                         className={cn(
                           "grid h-11 w-11 shrink-0 place-items-center rounded-xl border bg-white text-[color:var(--fg)] transition-colors",
-                          isActive ? "border-[color:var(--border-gold)]" : "border-[color:var(--border)]",
+                          isActive
+                            ? "border-[color:var(--border-gold)] bg-[color:color-mix(in_oklab,white_75%,var(--brand-gold)_25%)]"
+                            : "border-[color:var(--border)]",
                         )}
                       >
                         <Icon name={c.icon} className={cn(isActive ? "text-[color:var(--brand-blue)]" : "text-[color:var(--fg)]")} />
@@ -183,7 +306,14 @@ export function PinnedServices({
                         <p className={cn("text-base font-semibold leading-snug text-[color:var(--fg)]", isActive && "text-[color:var(--brand-blue)]")}>
                           {c.title}
                         </p>
-                        <p className="mt-1 text-sm leading-relaxed text-[color:var(--muted)]">{c.blurb}</p>
+                        <p
+                          className={cn(
+                            "mt-1 text-sm leading-relaxed text-[color:var(--muted)]",
+                            isActive && "text-[color:color-mix(in_oklab,var(--brand-blue)_48%,var(--muted))]",
+                          )}
+                        >
+                          {c.blurb}
+                        </p>
                       </div>
                     </button>
                   );
@@ -197,7 +327,54 @@ export function PinnedServices({
               ) : null}
             </div>
 
-            <div className="lg:col-span-7 lg:pl-8">
+            <div className="hidden lg:col-span-1 lg:flex lg:justify-center">
+              <div
+                className="relative w-12"
+                style={{ height: measuredHeight }}
+                aria-label="Services progress"
+                role="group"
+              >
+                <div
+                  className="absolute left-1/2 w-px -translate-x-1/2 bg-[color:color-mix(in_oklab,var(--border)_85%,transparent)]"
+                  style={{ top: trackTop, height: Math.max(1, trackBottom - trackTop) }}
+                  aria-hidden="true"
+                />
+                <div
+                  className="absolute left-1/2 w-[2px] -translate-x-1/2 bg-[image:var(--gradient-gold)] transition-[height] duration-150 ease-out motion-reduce:transition-none"
+                  style={{ top: trackTop, height: Math.max(0, fillBottom - trackTop) }}
+                  aria-hidden="true"
+                />
+
+                {categories.map((c, idx) => {
+                  const isActive = idx === activeIndex;
+                  const isCompleted = idx < activeIndex;
+                  return (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => jumpTo(idx)}
+                      aria-current={isActive ? "step" : undefined}
+                      title={c.title}
+                      className={cn(
+                        "absolute left-1/2 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border bg-white transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--brand-blue)]",
+                        "h-4 w-4",
+                        isCompleted
+                          ? "border-[color:color-mix(in_oklab,var(--brand-gold)_45%,var(--border))] bg-[color:color-mix(in_oklab,var(--brand-gold)_16%,white)]"
+                          : "border-[color:var(--border)]",
+                        isActive &&
+                          "h-5 w-5 border-[color:color-mix(in_oklab,var(--brand-gold)_55%,transparent)] bg-[image:var(--gradient-gold)] shadow-[0_12px_28px_rgba(15,23,42,0.22)]",
+                        "hover:shadow-[0_12px_28px_rgba(15,23,42,0.16)]",
+                      )}
+                      style={{ top: bulletPoints[idx] ?? 0 }}
+                    >
+                      <span className="sr-only">{c.title}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="lg:col-span-6 lg:pl-8">
               <div
                 className={cn(
                   "rounded-[var(--radius-card)] border bg-[color:var(--panel)] p-8 shadow-[var(--shadow)]",
